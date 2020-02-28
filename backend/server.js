@@ -1,4 +1,5 @@
 const express = require('express');
+
 // manage APIs with express
 const cors = require('cors');
 // allows connection with our database
