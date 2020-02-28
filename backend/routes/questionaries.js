@@ -3,6 +3,7 @@ const Questionary = require('../models/questionary.model');
 
 
 // ---------- QUESTIONARY ---------- //
+
 // Get all questionaries
 router.route('/').get((req, res) => {
   Questionary.find()

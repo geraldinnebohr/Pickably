@@ -29,11 +29,11 @@ connection.once('open', () => {
 });
 
 const questionaryRouter = require('./routes/questionaries');
-const roomRouter = require('./routes/room')
+//const roomRouter = require('./routes/room')
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
-app.use('/room', roomRouter);
+//app.use('/room', roomRouter);
 //app.use('/creator', creatorRouter);
 
 // what starts the server listening at a certain
