@@ -52,7 +52,7 @@
     margin: 30px 0px;
 }
 
-.content__circulo {
+.content__circle {
     background: rgb(15,245,59);
     background: linear-gradient(135deg, rgba(15,245,59,1) 0%, rgba(13,98,230,1) 100%, rgba(0,212,255,1) 100%); 
     grid-column-start: 1;
@@ -70,7 +70,7 @@
     color: #01B7B8;
 }
 
-.content__triangulo {
+.content__triangle {
     background: rgb(242,114,107);
 background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0%, rgba(80,58,215,1) 99%);
     grid-column-start: 1;
@@ -88,7 +88,7 @@ background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0
     color: #01B7B8;
 }
 
-.content__cuadrado {
+.content__square {
     background: rgb(242,114,107);
     background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(255,220,60,1) 0%, rgba(255,45,89,1) 99%);
     grid-column-start: 1;
@@ -106,7 +106,7 @@ background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0
     color: #01B7B8;
 }
 
-.content__equis {
+.content__ex {
     background: rgb(242,114,107);
     background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(0,255,255,1) 0%, rgba(147,39,143,1) 99%);
     grid-column-start: 1;

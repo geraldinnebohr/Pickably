@@ -114,7 +114,7 @@ router.route('/:id_questionary/question/:id_question/answers').get((req, res) =>
   Questionary.findById(req.params.id_questionary)
     .then(questionary => {
       const questionById = questionary.questions.id(req.params.id_question);
-      res.json(questionById.answers);
+      res.json(questionById);
     })
     .catch(err => res.status(400).json('Error: ' + err));
 });

@@ -6,17 +6,25 @@ class AnswerPerQuestion extends React.Component {
     state = {
         loading: true,
         error: null,
-        data: undefined
+        data: {
+            answers: [],
+        },
     };
 
     componentDidMount() {
-        // this.fetchData();
-        async () => {
-            fetch("https://localhost:5000/questionaries/")
-            .then(res => res.json())
-            .then(data => this.setState({data: data.}));
+        this.fetchData();
+    };
+
+    fetchData = async () => {
+            const response = await fetch("http://localhost:5500/questionary/5e44e0a71c9d440000177bf7/question/5e40392306704b226374b16f/answers");
+            const data = await response.json();
+            // .then(response => response.json())
+            // .then(data => {this.setState({data: data.description})
+            this.setState({
+                data: data,
+            });
                 // try {
-                //     const data = await response.questionaries();
+                //     const data = await data.questionary();
                 //     this.setState({ loading:false, data: data });
                 //     console.log("dataa");
                 // } catch (error){
@@ -24,50 +32,32 @@ class AnswerPerQuestion extends React.Component {
                 //     console.log("erroooor");
                 // }
         }
-    }
-
-    // fetchData = () => {
-    //     this.setState({ loading: true, error: null });
-    //     try {
-    //         const data = 
-    //         this.setState({ loading:false, data: data });
-    //     } catch (error){
-    //         this.setState({ loading: false, error: error });
-    //     }
-    // }
+    
 
     render() {
-        if(this.state.loading === true) {
-            return 'loading';
-        }
-
-
+        // if (this.state.loading === true) {
+        //     return 'loading...';
+        // }
+        let i = 0
+        const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
         return (
             <div className="grid_container">
                 <div className="child__content">
-                    <div className="content__left">Pregunta </div>
+                    <div className="content__left">{this.state.data.description} </div>
                     <div className="content__right" >
                         
 
                         <div className="content__container">
-                            <div className="content__circulo"></div>
-                            {this.state.data.map((answer) => {
+                            {this.state.data.answers.map((answer) => {
                                 return (
-                                    <li key={answer.id} className="circulo__answer">
-                                        <p>{answer.name} {answer.lastname}</p>
+                                    <>
+                                    <div className={iconClass[i++]}></div>
+                                    
+                                    <li key={answer._id} className="circulo__answer">{answer.description}
                                     </li>
+                                    </>
                                 )
                             })}
-                            {/* <div className="circulo__answer">Respuesta</div>
-
-                            <div class="content__triangulo"></div>
-                            <div class="triangulo__answer">Lorem ipsum dolor sit, amen aefrbve ertwef</div>
-
-                            <div class="content__cuadrado"></div>
-                            <div class="cuadrado__answer">Lorem ipsum dolor sit, amen aefrbve ertwef</div>
-
-                            <div class="content__equis"></div>
-                            <div class="equis__answer">Lorem ipsum dolor sit, amen aefrbve ertwef</div> */}
                         </div>
                     </div>
                 </div>
