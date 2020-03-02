@@ -16,28 +16,27 @@ class AnswerPerQuestion extends React.Component {
     };
 
     fetchData = async () => {
-            const response = await fetch("http://localhost:5500/questionary/5e44e0a71c9d440000177bf7/question/5e40392306704b226374b16f/answers");
-            const data = await response.json();
-            // .then(response => response.json())
-            // .then(data => {this.setState({data: data.description})
-            this.setState({
-                data: data,
-            });
-                // try {
-                //     const data = await data.questionary();
-                //     this.setState({ loading:false, data: data });
-                //     console.log("dataa");
-                // } catch (error){
-                //     this.setState({ loading: false, error: error });
-                //     console.log("erroooor");
-                // }
+            this.setState({ loading: true, error: null });
+
+            try {
+                const response = await fetch("http://localhost:5500/questionary/5e44e0a71c9d440000177bf7/question/5e40392306704b226374b16f/answers");
+                const data = await response.json();
+                this.setState({ loading: false, data: data });
+            } catch (error) {
+                this.setState({ loading: false, error: error });
+            }
         }
     
 
     render() {
-        // if (this.state.loading === true) {
-        //     return 'loading...';
-        // }
+        if (this.state.loading == true) {
+            return 'loading...';
+        }
+
+        if (this.state.error) {
+            return `Error: ${this.state.error.message}`;
+        }
+
         let i = 0
         const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
         return (
@@ -45,15 +44,13 @@ class AnswerPerQuestion extends React.Component {
                 <div className="child__content">
                     <div className="content__left">{this.state.data.description} </div>
                     <div className="content__right" >
-                        
-
                         <div className="content__container">
                             {this.state.data.answers.map((answer) => {
                                 return (
                                     <>
                                     <div className={iconClass[i++]}></div>
                                     
-                                    <li key={answer._id} className="circulo__answer">{answer.description}
+                                    <li key={answer._id} className="content__answer">{answer.description}
                                     </li>
                                     </>
                                 )
