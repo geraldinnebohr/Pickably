@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './Styles/Square.css';
+import './Styles/BackgroundDark.css';
 
-class Square extends React.Component {
+class BackgroundDark extends React.Component {
     render() {
         return (
             <div className="grid_container">
@@ -13,4 +13,4 @@ class Square extends React.Component {
     }
 }
 
-export default Square;
+export default BackgroundDark;

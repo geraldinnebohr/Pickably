@@ -1,18 +1,16 @@
-body {
-    background-color: #000E57;
-    margin: 0px;
-    font-size: 1.5vw;
-    font-family: 'Alata';
-}
-.grid_container {
+.grid_container_light {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: 1fr 8fr 1fr;
     width: 100vw;
     height: 100vh;
+    background-color: white;
+    font-size: 1.5vw;
+    font-family: 'Alata';
+    color: #000E57;
 }
 
-.content {
+.content_light {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;

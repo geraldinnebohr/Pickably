@@ -29,7 +29,7 @@ class AnswerPerQuestion extends React.Component {
     
 
     render() {
-        if (this.state.loading == true) {
+        if (this.state.loading === true) {
             return 'loading...';
         }
 
@@ -40,8 +40,8 @@ class AnswerPerQuestion extends React.Component {
         let i = 0
         const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
         return (
-            <div className="grid_container">
-                <div className="child__content">
+            <div className="grid_container_dark">
+                <div className="child__content__answer">
                     <div className="content__left">{this.state.data.description} </div>
                     <div className="content__right" >
                         <div className="content__container">

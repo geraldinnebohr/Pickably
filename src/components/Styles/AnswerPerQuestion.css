@@ -1,12 +1,4 @@
-.grid_container {
-    display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
-    grid-template-rows: 1fr 8fr 1fr;
-    width: 100vw;
-    height: 100vh;
-}
-
-.child__content {
+.child__content__answer {
     /* grid-column: inicio / fin; */
     /* grid-column: 1 / -1 para que ocupe todos los espacios de una misma fila siempre */
     /* grid-column: 1 / span 2 para que me ocupe 2 espacios; */
@@ -70,7 +62,7 @@
 
 .content__triangle {
     background: rgb(242,114,107);
-background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0%, rgba(80,58,215,1) 99%);
+    background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0%, rgba(80,58,215,1) 99%);
     grid-column-start: 1;
     grid-column-end: 2;
     border-radius: 30px;
