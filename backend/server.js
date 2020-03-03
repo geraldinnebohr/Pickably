@@ -19,8 +19,7 @@ app.use(express.json());
 
 // database uri which enables connection with our database
 const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }
-);
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true , autoIndex: false });
 const connection = mongoose.connection;
 
 // once the connection is open is gonna display the message
@@ -29,11 +28,11 @@ connection.once('open', () => {
 });
 
 const questionaryRouter = require('./routes/questionaries');
-//const roomRouter = require('./routes/room')
+const roomRouter = require('./routes/room')
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
-//app.use('/room', roomRouter);
+app.use('/room', roomRouter);
 //app.use('/creator', creatorRouter);
 
 // what starts the server listening at a certain
