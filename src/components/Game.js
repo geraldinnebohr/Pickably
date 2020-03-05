@@ -7,8 +7,9 @@ class Game extends React.Component {
         loading: true,
         error: null,
         data: {
-            answers: [],
+            score: '10',
         },
+        correct: true
     };
 
     componentDidMount() {
@@ -17,25 +18,30 @@ class Game extends React.Component {
 
     fetchData = async () => {
             this.setState({ loading: true, error: null });
-
-            try {
-                const response = await fetch("http://localhost:5500/questionary/5e44e0a71c9d440000177bf7/question/5e40392306704b226374b16f/answers");
-                const data = await response.json();
-                this.setState({ loading: false, data: data });
-            } catch (error) {
-                this.setState({ loading: false, error: error });
-            }
-        }
-    
-
-
-
-
-
+    }
 
     handleClick = e => {
-        console.log("clicked");
-    }
+        e.preventDefault();
+        this.setState({ loading: true, error: null });
+
+        // try {
+
+        // }
+            try {
+                fetch("http://localhost:5500/room/zHjAhZp7/player/update/5e5dbac95038246caf024c71", {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.data),
+                    headers:{
+                        'Content-Type': 'application/json'
+                      }
+                }).then(update => update.json());
+                this.setState({ loading: false });
+                console.log("done!");
+            } catch (error) {
+                console.log(error);
+                this.setState({ loading: false, error: error });
+            }
+    };
 
 
     render() {
@@ -43,14 +49,14 @@ class Game extends React.Component {
         let iconLeft = []
         iconsLeft.forEach(il => {
             iconLeft.push(
-                <button className={il}></button>
+                <button onClick={this.handleClick} className={il}></button>
             )
         })
         const iconsRight = ["squares__square", "squares__ex"]
         let iconRight = []
         iconsRight.forEach(ir => {
             iconRight.push(
-                <button  onClick={this.handleClick} className={ir}></button>
+                <button onClick={this.handleClick} className={ir}></button>
             )
         })
         return (
