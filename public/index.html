@@ -6,6 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
   <title>Pickably</title>
 
+  <script src="https://js.pusher.com/5.1/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('8c2448ad4ff913dfab70', {
+      cluster: 'us2',
+      forceTLS: true
+    });
+
+    var channel = pusher.subscribe('test-poll');
+    channel.bind('test-vote', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
   <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
 </head>
 

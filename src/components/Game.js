@@ -28,13 +28,13 @@ class Game extends React.Component {
 
         // }
             try {
-                fetch("http://localhost:5500/room/zHjAhZp7/player/update/5e5dbac95038246caf024c71", {
+                fetch("http://localhost:5500/poll", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
                         'Content-Type': 'application/json'
                       }
-                }).then(update => update.json());
+                }).then(res => {return res})
                 this.setState({ loading: false });
                 console.log("done!");
             } catch (error) {
