@@ -6,12 +6,14 @@ class AnswerPerQuestion extends React.Component {
     state = {
         loading: true,
         error: null,
+        index: 0,
+        shown: true,
         data: [ ]
     };
 
     componentDidMount() {
         this.fetchData();
-    };
+    }
 
     fetchData = async () => {
             this.setState({ loading: true, error: null });
@@ -25,9 +27,12 @@ class AnswerPerQuestion extends React.Component {
             }
         }
 
-    // setTimeout(() => {
-        
-    // }, 3000);
+    handleClick = () => {
+        let i = this.state.index < this.state.data.length ? this.state.index += 1 : 0;
+        this.setState({ index: i });
+        let j = this.state.shown ? i : null;
+        this.setState({ shown: !j });
+    }
 
     render() {
         if (this.state.loading === true) {
@@ -38,37 +43,37 @@ class AnswerPerQuestion extends React.Component {
             return `Error: ${this.state.error.message}`;
         }
 
-        this.state.data.forEach(i => {
-            console.log(i)
-        });
-
         let i = 0
         const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
         return (
             <div className="grid_container_dark">
                 <div className="child__content__answer">
                     <div className="content__left">
-                    {this.state.data.map((question) => {
+                    {this.state.data.map((question, index, shown) => {
                         return (
-                            <p>{question.description}</p>
+                            <p key={index} hidden={index >= this.state.index}>{!this.state.shown}{question.description}</p>
                         )
                     })}
                     </div>
                     <div className="content__right" >
                         <div className="content__container">
-                            {/* {this.state.data.map((answer) => {
+                            {this.state.data.map((question) => {
                                 return (
                                     <>
                                     <div className={iconClass[i++]}></div>
-                                    
-                                    <li key={answer._id} className="content__answer">{answer.description}
-                                    </li>
+                                    {question.answers.map((answer, index) => {
+                                        return (
+                                            <li key={answer._id} hidden={index >= this.state.index} className="content__answer">{answer.description}
+                                            </li>
+                                        )
+                                    })}
                                     </>
                                 )
-                            })} */}
+                            })}
                         </div>
                     </div>
                 </div>
+                <button onClick={this.handleClick}>next</button>
             </div>
         )
     }
