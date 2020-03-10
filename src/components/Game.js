@@ -7,7 +7,7 @@ class Game extends React.Component {
         loading: true,
         error: null,
         data: {
-            score: '10',
+            votes: '233',
         },
         correct: true
     };
@@ -20,15 +20,12 @@ class Game extends React.Component {
             this.setState({ loading: true, error: null });
     }
 
-    handleClick = e => {
+    handleClickCircle = e => {
         e.preventDefault();
         this.setState({ loading: true, error: null });
-
-        // try {
-
-        // }
+    
             try {
-                fetch("http://localhost:5500/room/zHjAhZp7/player/update/5e5dbac95038246caf024c71", {
+                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e6468af44815d171a98e82e", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -43,28 +40,76 @@ class Game extends React.Component {
             }
     };
 
+    handleClickTriangle = e => {
+        e.preventDefault();
+        this.setState({ loading: true, error: null });
+    
+            try {
+                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64688f44815d171a98e82d", {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.data),
+                    headers:{
+                        'Content-Type': 'application/json'
+                      }
+                }).then(update => update.json());
+                this.setState({ loading: false });
+                console.log("done!");
+            } catch (error) {
+                console.log(error);
+                this.setState({ loading: false, error: error });
+            }
+    };
+
+    handleClickSquare = e => {
+        e.preventDefault();
+        this.setState({ loading: true, error: null });
+    
+            try {
+                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64690944815d171a98e82f", {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.data),
+                    headers:{
+                        'Content-Type': 'application/json'
+                      }
+                }).then(update => update.json());
+                this.setState({ loading: false });
+                console.log("done!");
+            } catch (error) {
+                console.log(error);
+                this.setState({ loading: false, error: error });
+            }
+    };
+
+    handleClickEx = e => {
+        e.preventDefault();
+        this.setState({ loading: true, error: null });
+    
+            try {
+                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64690f44815d171a98e830", {
+                    method: 'PUT',
+                    body: JSON.stringify(this.state.data),
+                    headers:{
+                        'Content-Type': 'application/json'
+                      }
+                }).then(update => update.json());
+                this.setState({ loading: false });
+                console.log("done!");
+            } catch (error) {
+                console.log(error);
+                this.setState({ loading: false, error: error });
+            }
+    };
 
     render() {
-        const iconsLeft = ["squares__circle", "squares__triangle"]
-        let iconLeft = []
-        iconsLeft.forEach(il => {
-            iconLeft.push(
-                <button onClick={this.handleClick} className={il}></button>
-            )
-        })
-        const iconsRight = ["squares__square", "squares__ex"]
-        let iconRight = []
-        iconsRight.forEach(ir => {
-            iconRight.push(
-                <button onClick={this.handleClick} className={ir}></button>
-            )
-        })
+                
         return (
             <div className="grid_container_light">
                 <div className="child__content__game">
                     <div className="content__squares">
-                       {iconLeft}
-                       {iconRight}
+                        <button onClick={this.handleClickCircle} className="squares__circle"></button>
+                        <button onClick={this.handleClickTriangle} className="squares__triangle"></button>
+                        <button onClick={this.handleClickSquare} className="squares__square"></button>
+                        <button onClick={this.handleClickEx} className="squares__ex"></button>
                     </div>
                     <div className="content__score"></div>
                 </div>
