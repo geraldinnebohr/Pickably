@@ -1,17 +1,55 @@
 import React from 'react';
 
+import './Styles/Results.css'
+
 class Results extends React.Component {
+    state = {
+        loading: true,
+        error: null,
+        data: [ ]
+    };
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    fetchData = async () => {
+        this.setState({ loading: true, error: null });
+
+        try {
+            const response = await fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c");
+            const data = await response.json();
+            this.setState({ loading: false, data: data });
+        } catch (error) {
+            this.setState({ loading: false, error: error });
+        }
+    }
+
     render() {
+        if (this.state.loading === true) {
+            return 'loading...';
+        }
+
+        if (this.state.error) {
+            return `Error: ${this.state.error.message}`;
+        }
+
+        let i = 0
+        const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
+
         return (
-            <div className="general__container">
+            <div className="grid_container_dark">
                 <div className="container__results">
-                    <div className="results__circle">Circle: X</div>
-                    <div className="results__triangle">Triangle: X</div>
-                    <div className="results__square">Square: X</div>
-                    <div className="results__ex">Ex: X</div>
+                    <div className={iconClass[i++]}></div>
+                    {this.state.data.options.map((option) => {
+                        return (
+                            <li key={option._id} className="content__answer">{option.description}: {option.votes}</li>
+                        )
+                    })}
+                    {console.log(this.state.data.options.description)}
                 </div>
             </div>
-        );
+        )
     }
 }
 
