@@ -29,12 +29,12 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-// const questionaryRouter = require('./routes/questionaries');
+const questionaryRouter = require('./routes/questionaries');
 // const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
 //const creatorRouter = require('./routes/creators');
 
-// app.use('/questionary', questionaryRouter);
+app.use('/questionary', questionaryRouter);
 // app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 //app.use('/creator', creatorRouter);
