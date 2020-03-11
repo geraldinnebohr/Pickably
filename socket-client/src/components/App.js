@@ -5,6 +5,8 @@ import Layout from './Layout';
 import Game from './Game';
 import AnswerPerQuestion from './AnswerPerQuestion';
 import Results from './Results';
+import Play from './Play';
+import Nickname from './Nickname';
 import Login from '../pages/Login';
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
                     <Route exact path="/answers" component={AnswerPerQuestion} />
                     <Route exact path="/game" component={Game} />
                     <Route exact path="/results" component={Results}/>
+                    <Route exact path="/play" component={Play}/>
+                    <Route exact path="/nickname" component={Nickname}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
