@@ -1,4 +1,7 @@
 const express = require('express');
+const http = require('http')
+const socketIO = require('socket.io')
+
 
 // manage APIs with express
 const cors = require('cors');
@@ -8,10 +11,11 @@ const mongoose = require('mongoose');
 // manage environment variables
 require('dotenv').config();
 
+// port where the server will be
+const port = process.env.PORT || 4001;
+
 // create express server
 const app = express();
-// port where the server will be
-const port = process.env.PORT || 5500;
 
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
@@ -36,7 +40,21 @@ app.use('/questionary', questionaryRouter);
 //app.use('/room', roomRouter);
 //app.use('/creator', creatorRouter);
 
-// what starts the server listening at a certain
-app.listen(port, () => {
+// our server instance
+const server = http.createServer(app);
+
+// This creates our socket using the instance of the server
+const io = socketIO(server);
+
+// This is what the socket.io syntax is like, we will work this later
+io.on('connection', socket => {
+  console.log('User connected')
+  
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+})
+
+server.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
