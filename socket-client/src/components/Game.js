@@ -1,5 +1,5 @@
 import React from 'react';
-
+import socketIOClient from "socket.io-client";
 import './Styles/Game.css';
 
 class Game extends React.Component {
@@ -9,8 +9,17 @@ class Game extends React.Component {
         data: {
             votes: '233',
         },
-        correct: true
+        correct: true,
+        endpoint: "localhost:5500",
+        updated: null
     };
+
+    // sending sockets
+    send = (op) => {
+        const socket = socketIOClient(this.state.endpoint);
+        socket.emit('poll vote', this.state.updated);
+        this.setState({updated: op})
+    }
 
     componentDidMount() {
         this.fetchData();
@@ -32,8 +41,9 @@ class Game extends React.Component {
                         'Content-Type': 'application/json'
                       }
                 }).then(update => update.json());
-                this.setState({ loading: false });
+                this.setState({ loading: false, updated: true });
                 console.log("done!");
+                this.send('circle');
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -52,8 +62,9 @@ class Game extends React.Component {
                         'Content-Type': 'application/json'
                       }
                 }).then(update => update.json());
-                this.setState({ loading: false });
+                this.setState({ loading: false, updated: true });
                 console.log("done!");
+                this.send('Triangle');
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -72,8 +83,9 @@ class Game extends React.Component {
                         'Content-Type': 'application/json'
                       }
                 }).then(update => update.json());
-                this.setState({ loading: false });
+                this.setState({ loading: false, updated: true });
                 console.log("done!");
+                this.send('Square');
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -92,8 +104,9 @@ class Game extends React.Component {
                         'Content-Type': 'application/json'
                       }
                 }).then(update => update.json());
-                this.setState({ loading: false });
+                this.setState({ loading: false, updated: true });
                 console.log("done!");
+                this.send('Ex');
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });

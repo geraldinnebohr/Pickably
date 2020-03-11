@@ -1,16 +1,23 @@
 import React from 'react';
-
+import socketIOClient from "socket.io-client";
 import './Styles/Results.css'
 
 class Results extends React.Component {
     state = {
         loading: true,
         error: null,
-        data: [ ]
+        data: [ ],
+        endpoint: "localhost:5500",
     };
 
     componentDidMount() {
         this.fetchData();
+
+        const socket = socketIOClient(this.state.endpoint);
+        // setInterval(this.send(), 1000)
+        socket.on('poll vote', (u) => {
+            this.fetchData();
+        })
     }
 
     fetchData = async () => {
