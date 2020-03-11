@@ -7,7 +7,7 @@
     background-color: white;
     font-size: 1.5vw;
     font-family: 'Alata';
-    color: #000E57;
+    color: white;
 }
 
 .content_light {
@@ -17,7 +17,7 @@
     grid-row-end: 3;
     border-radius: 35px;
     overflow: hidden;
-    background-color: rgb(107, 99, 103);
+    background-color: #090D28;
 }
 
 

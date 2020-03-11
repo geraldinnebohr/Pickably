@@ -1,0 +1,66 @@
+.play__container {
+    background-image: url("../../images/background_dark.svg");
+    background-position: center;
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    grid-template-rows: 30% 50% 20%;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    font-size: 1.8vw;
+    font-family: 'Alata';
+}
+
+.play__pin {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: center;
+}
+
+.play__logo {
+    width: 80%;
+}
+
+.play__input {
+    margin-top: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-style: none;
+    border-radius: 7px;
+    height: 70px;
+}
+
+.play__button {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: block;
+    width: 30%;
+    border-radius: 25px;
+    color: white;
+    height: 12%;
+    background: rgb(242,114,107);
+background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(0,248,170,1) 0%, rgba(1,183,184,1) 50%, rgba(66,70,153,1) 100%);
+}
+
+.game__container {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    text-align: center;
+}
+
+.create__game {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: block;
+    width: 20%;
+    border-radius: 25px;
+    color: #000E57;
+    height: 25%;
+    background: rgb(242,114,107);
+    background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
+}
