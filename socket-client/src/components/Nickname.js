@@ -1,54 +1,17 @@
 import React from 'react';
-
+import socketIOClient from "socket.io-client";
 import './Styles/Nickname.css';
 
 class Nickname extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         // value: '',
-    //         loading: true,
-    //         error: null,
-    //         data: {
-    //             userName: '',
-    //         }
-    //     };
-
-    //     this.handleChange = this.handleChange.bind(this);
-    // }
-
-    // componentDidMount() {
-    //     this.fetchData();
-    // }
-
-    // fetchData = async () => {
-    //     this.setState({ loading: true, error: null });
-
-    //     try {
-    //         fetch("http://localhost:5500/room/zHjAhZp7/player/add", {
-    //             method: 'POST',
-    //             body: JSON.stringify(this.state.data),
-    //             headers:{
-    //                 'Content-Type': 'application/json'
-    //               }
-    //             }).then(post => post.json());
-    //         this.setState({ loading: false });
-    //         console.log(this.state.data);
-    //         // window.location.href='./nickname';
-    //     } catch (error) {
-    //         this.setState({ loading: false, error: error });
-    //     }
-    // }
-
-    // handleChange = (event) => {
-    //     this.setState({data: event.target});
-
-    //     console.log("<<<<<<<<<<<<" + this.state.data);
-    // }
-
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    // sending sockets
+    send = (un) => {
+        const socket = socketIOClient("localhost:5500");
+        socket.emit('add player', un);
     }
 
     handleSubmit(event) {
@@ -64,7 +27,9 @@ class Nickname extends React.Component {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(data)
+        const un = data.get('userName');
+        console.log(un);
+        this.send(un);
     }
 
     render() {

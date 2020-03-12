@@ -1,4 +1,5 @@
 import React from 'react';
+import socketIOClient from "socket.io-client";
 
 class Pin extends React.Component {
     state = {
@@ -24,6 +25,12 @@ class Pin extends React.Component {
     }
 
     render() {
+
+        const socket = socketIOClient("localhost:5500");
+        socket.once('add player', (un) => {
+            this.fetchData();
+        })
+
         if (this.state.loading === true) {
             return 'loading...';
         }
