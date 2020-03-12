@@ -42,6 +42,7 @@ class Results extends React.Component {
 
         let i = 0
         const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
+        console.log(this.state.data)
 
         return (
             <div className="grid_container_dark">

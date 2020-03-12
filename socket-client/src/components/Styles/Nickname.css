@@ -1,34 +1,40 @@
-.nickname__container {
+.nickname__content {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    border-radius: 35px;
-    overflow: hidden;
+    text-align: center;
     background-color: #090D28;
-        /* empieza como padre aquí */
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 60% 1fr;
+    color: white;
+    border-radius: 35px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.nickname__content {
-    grid-row-start: 2;
-    grid-row-end: 3;
-    text-align: center;
+.nickname__text {
     font-size: 3vw;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    font-size: 2.5vw;
 }
 
 .nickname__input {
+    margin-top: 50px;
+    text-align: center;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border-style: none;
     border-radius: 7px;
-    height: 70px;
-    /* width: 30px; */
+    height: 50px;
+}
+
+.nickname__button {
+    margin: 0 auto;
+    margin-top: 20px;
+    display: block;
+    width: 10%;
+    border-radius: 25px;
+    color: white;
+    height: 6%;
+    background: rgb(242,114,107);
+    background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
 }

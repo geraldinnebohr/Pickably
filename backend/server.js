@@ -31,7 +31,8 @@ connection.once('open', () => {
 
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
-const pollRouter = require('./routes/poll');
+const pollRouter = require('./routes/poll')
+
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
