@@ -30,6 +30,7 @@ class Nickname extends React.Component {
         const un = data.get('userName');
         console.log(un);
         this.send(un);
+        window.location.href='./loading';
     }
 
     render() {

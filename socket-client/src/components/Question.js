@@ -1,27 +1,26 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
-import { Redirect } from 'react-router';
 
 class Question extends React.Component {
     state = {
         loading: true,
         error: null,
-        index: 1,
+        index: 0,
         data: [ ],
         redirect: false
     };
 
     // sending sockets
-    send = (un) => {
+    send = (i) => {
         const socket = socketIOClient("localhost:5500");
-        socket.emit('add player', un);
+        socket.emit('please answer', i);
     }
 
     componentDidMount() {
         this.fetchData();
         this.id = setTimeout(() => {
-            this.setState({ redirect: true });
-
+            this.send(this.state.index);
+            window.location.href='./answers';
         }, 10000)
     }
 
@@ -51,15 +50,15 @@ class Question extends React.Component {
         }
         
         
-        return this.state.redirect
-        ? <Redirect to="/answers" />
-        :<div>
+        return (
             <div>
                 <div>
-                    <p>{this.state.data.description}</p>
+                    <div>
+                        <p>{this.state.data.description}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        )
     }
 }
 
