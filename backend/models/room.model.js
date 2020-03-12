@@ -41,18 +41,3 @@ const roomSchema = new Schema(
 const Room = mongoose.model('Room', roomSchema);
 
 module.exports = Room;
-
-    © 2020 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Help
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-

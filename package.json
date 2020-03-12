@@ -21,16 +21,15 @@
   },
   "homepage": "https://github.com/geraldinnebohr/Pickably#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.4",
-    "socket.io": "^2.3.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.4",
     "nodemon": "^2.0.2",
     "pusher": "^3.0.0",
     "react": "^16.12.0",
@@ -38,6 +37,7 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
-    "shortid": "^2.2.15"
+    "shortid": "^2.2.15",
+    "socket.io": "^2.3.0"
   }
 }

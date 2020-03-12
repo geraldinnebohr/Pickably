@@ -1,6 +1,6 @@
-const express = require('express')
-const http = require('http')
-const socketIO = require('socket.io')
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
 
 // manage APIs with express
 const cors = require('cors');
@@ -13,7 +13,7 @@ require('dotenv').config();
 // our localhost port
 const port = process.env.PORT || 5500;
 
-const app = express()
+const app = express();
 
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
@@ -30,12 +30,12 @@ connection.once('open', () => {
 });
 
 const questionaryRouter = require('./routes/questionaries');
-// const roomRouter = require('./routes/room')
-const pollRouter = require('./routes/poll')
+const roomRouter = require('./routes/room')
+const pollRouter = require('./routes/poll');
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
-// app.use('/room', roomRouter);
+app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 //app.use('/creator', creatorRouter);
 
