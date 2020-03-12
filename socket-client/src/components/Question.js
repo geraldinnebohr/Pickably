@@ -1,4 +1,6 @@
 import React from 'react';
+import socketIOClient from "socket.io-client";
+import { Redirect } from 'react-router';
 
 class Question extends React.Component {
     state = {
@@ -6,11 +8,26 @@ class Question extends React.Component {
         error: null,
         index: 1,
         data: [ ],
+        redirect: false
     };
+
+    // sending sockets
+    send = (un) => {
+        const socket = socketIOClient("localhost:5500");
+        socket.emit('add player', un);
+    }
 
     componentDidMount() {
         this.fetchData();
+        this.id = setTimeout(() => {
+            this.setState({ redirect: true });
+
+        }, 10000)
     }
+
+    componentWillUnmount() {
+        clearTimeout(this.id)
+    }    
 
     fetchData = async () => {
             this.setState({ loading: true, error: null });
@@ -34,15 +51,15 @@ class Question extends React.Component {
         }
         
         
-        return (
+        return this.state.redirect
+        ? <Redirect to="/answers" />
+        :<div>
             <div>
                 <div>
-                    <div>
-                        <p>{this.state.data.description}</p>
-                    </div>
+                    <p>{this.state.data.description}</p>
                 </div>
             </div>
-        )
+        </div>
     }
 }
 
