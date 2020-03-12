@@ -24,6 +24,10 @@ class Pin extends React.Component {
         }
     }
 
+    handleClick = () => {
+        window.location.href='./question';
+    }
+
     render() {
 
         const socket = socketIOClient("localhost:5500");
@@ -48,8 +52,8 @@ console.log(this.state.data)
                             <li key={user._id}>{user.userName}</li>
                         )
                     })}
-                    {console.log(this.state.data.players.username)}
                 </div>
+                <button onClick={this.handleClick}>START</button>
             </div>
         )
     }
