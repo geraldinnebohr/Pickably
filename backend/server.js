@@ -30,12 +30,12 @@ connection.once('open', () => {
 });
 
 const questionaryRouter = require('./routes/questionaries');
-// const roomRouter = require('./routes/room')
+const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
-// app.use('/room', roomRouter);
+app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 //app.use('/creator', creatorRouter);
 
