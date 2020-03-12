@@ -9,6 +9,7 @@ import Play from './Play';
 import Nickname from './Nickname';
 import Pin from './Pin';
 import Question from './Question';
+import Loading from './Loading';
 
 import Login from '../pages/Login';
 
@@ -24,6 +25,7 @@ function App() {
                     <Route exact path="/nickname" component={Nickname}/>
                     <Route exact path="/pin" component={Pin}/>
                     <Route exact path="/question" component={Question}/>
+                    <Route exact path="/loading" component={Loading}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
