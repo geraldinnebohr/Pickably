@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Layout from './Layout';
+// import Layout from './Layout';
 import Game from './Game';
 import AnswerPerQuestion from './AnswerPerQuestion';
 import Results from './Results';
 import Play from './Play';
 import Nickname from './Nickname';
 import Pin from './Pin';
-import Login from '../pages/Login';
+// import Login from '../pages/Login';
+import Question from './Question';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route exact path="/play" component={Play}/>
                     <Route exact path="/nickname" component={Nickname}/>
                     <Route exact path="/pin" component={Pin}/>
+                    <Route exact path="/question" component={Question}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
