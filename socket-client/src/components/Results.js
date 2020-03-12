@@ -31,6 +31,10 @@ class Results extends React.Component {
         }
     }
 
+    handleClick = () => {
+        
+    }
+
     render() {
         if (this.state.loading === true) {
             return 'loading...';
@@ -53,8 +57,9 @@ class Results extends React.Component {
                             <li key={option._id} className="content__answer">{option.description}: {option.votes}</li>
                         )
                     })}
-                    {console.log(this.state.data.options.description)}
                 </div>
+
+                <button onClick={this.handleClick}>NEXT</button>
             </div>
         )
     }
