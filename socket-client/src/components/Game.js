@@ -6,10 +6,6 @@ class Game extends React.Component {
     state = {
         loading: true,
         error: null,
-        data: {
-            votes: '233',
-        },
-        correct: true,
         endpoint: "localhost:5500",
         updated: null
     };

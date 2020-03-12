@@ -1,6 +1,6 @@
-const express = require('express')
-const http = require('http')
-const socketIO = require('socket.io')
+const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
 
 // manage APIs with express
 const cors = require('cors');
@@ -13,7 +13,7 @@ require('dotenv').config();
 // our localhost port
 const port = process.env.PORT || 5500;
 
-const app = express()
+const app = express();
 
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
@@ -32,6 +32,7 @@ connection.once('open', () => {
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
+
 //const creatorRouter = require('./routes/creators');
 
 app.use('/questionary', questionaryRouter);
@@ -49,6 +50,11 @@ const io = socketIO(server)
 io.on('connection', socket => {
   console.log('New client connected')
   
+  socket.on('add player', (un) => {
+    console.log('Player added');
+    io.sockets.emit('add player', un);
+  })
+
   // just like on the client side, we have a socket.on method that takes a callback function
   socket.on('poll vote', (updated) => {
     // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients

@@ -11,7 +11,6 @@ class Results extends React.Component {
     };
 
     componentDidMount() {
-        this.fetchData();
 
         const socket = socketIOClient(this.state.endpoint);
         // setInterval(this.send(), 1000)
