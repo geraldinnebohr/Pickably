@@ -8,6 +8,8 @@ import Results from './Results';
 import Play from './Play';
 import Nickname from './Nickname';
 import Pin from './Pin';
+import Question from './Question';
+
 import Login from '../pages/Login';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
                     <Route exact path="/play" component={Play}/>
                     <Route exact path="/nickname" component={Nickname}/>
                     <Route exact path="/pin" component={Pin}/>
+                    <Route exact path="/question" component={Question}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
