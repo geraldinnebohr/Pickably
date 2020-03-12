@@ -10,7 +10,8 @@ class Play extends React.Component {
             value: '',
             loading: true,
             error: null,
-            data: [ ]
+            data: [ ],
+            redirect: false
         };
 
         this.handleChange = this.handleChange.bind(this);
