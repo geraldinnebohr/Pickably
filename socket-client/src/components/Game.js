@@ -10,13 +10,6 @@ class Game extends React.Component {
         updated: null
     };
 
-    // sending sockets
-    send = (op) => {
-        const socket = socketIOClient(this.state.endpoint);
-        socket.emit('poll vote', this.state.updated);
-        this.setState({updated: op})
-    }
-
     componentDidMount() {
         this.fetchData();
     };
@@ -39,7 +32,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                this.send('circle');
+                window.location.href='./loading';
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -60,7 +53,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                this.send('Triangle');
+                window.location.href='./loading';
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -81,7 +74,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                this.send('Square');
+                window.location.href='./loading';
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -102,7 +95,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                this.send('Ex');
+                window.location.href='./loading';
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -110,7 +103,11 @@ class Game extends React.Component {
     };
 
     render() {
-                
+        const socket = socketIOClient("localhost:5500");
+        socket.once('question results', (i) => {
+            window.location.href='./loading';
+        })
+
         return (
             <div className="grid_container_light">
                 <div className="child__content__game">

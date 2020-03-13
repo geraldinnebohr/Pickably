@@ -25,7 +25,7 @@ class Pin extends React.Component {
     }
 
     handleClick = () => {
-        window.location.href='./question';
+        window.location.href='./question?index=0';
     }
 
     render() {

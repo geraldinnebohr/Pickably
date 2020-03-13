@@ -55,12 +55,14 @@ io.on('connection', socket => {
     io.sockets.emit('add player', un);
   })
 
-  // just like on the client side, we have a socket.on method that takes a callback function
-  socket.on('poll vote', (updated) => {
-    // once we get a 'change color' event from one of our clients, we will send it to the rest of the clients
-    // we make use of the socket.emit method again with the argument given to use from the callback function above
-    console.log('Updated: ', updated)
-    io.sockets.emit('poll vote', updated)
+  socket.on('time to vote', (i) => {
+    console.log('Time to vote');
+    io.sockets.emit('time to vote', i++);
+  })
+
+  socket.on('question results', (i) => {
+    console.log('Question results');
+    io.sockets.emit('question results', i++);
   })
   
   // disconnect is fired when a client leaves the server

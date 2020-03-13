@@ -6,21 +6,20 @@ class Results extends React.Component {
     state = {
         loading: true,
         error: null,
+        index: null,
         data: [ ],
         endpoint: "localhost:5500",
     };
 
     componentDidMount() {
-
-        const socket = socketIOClient(this.state.endpoint);
-        // setInterval(this.send(), 1000)
-        socket.on('poll vote', (u) => {
-            this.fetchData();
-        })
+        this.fetchData();
     }
 
     fetchData = async () => {
-        this.setState({ loading: true, error: null });
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+        this.setState({ loading: true, error: null, index: i });
 
         try {
             const response = await fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c");
@@ -32,10 +31,17 @@ class Results extends React.Component {
     }
 
     handleClick = () => {
-        
+        const iNext = 1 + +this.state.index;
+        window.location.href='./question?index=' + iNext;
     }
 
     render() {
+        const socket = socketIOClient(this.state.endpoint);
+        // setInterval(this.send(), 1000)
+        socket.on('poll vote', (u) => {
+            this.fetchData();
+        })
+
         if (this.state.loading === true) {
             return 'loading...';
         }
