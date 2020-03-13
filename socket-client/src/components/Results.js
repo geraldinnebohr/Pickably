@@ -49,7 +49,7 @@ class Results extends React.Component {
         console.log(this.state.data)
 
         return (
-            <div className="grid_container_dark">
+             <div className="grid_container_dark">
                 <div className="container__results">
                     <div className={iconClass[i++]}></div>
                     {this.state.data.options.map((option) => {
@@ -58,8 +58,7 @@ class Results extends React.Component {
                         )
                     })}
                 </div>
-
-                <button onClick={this.handleClick}>NEXT</button>
+                 <button onClick={this.handleClick}>NEXT</button>
             </div>
         )
     }
