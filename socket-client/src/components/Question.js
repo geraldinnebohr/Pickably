@@ -1,6 +1,8 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
 
+import './Styles/Question.css'
+
 class Question extends React.Component {
     state = {
         loading: true,
@@ -49,11 +51,15 @@ class Question extends React.Component {
         
         
         return (
-            <div>
-                <div>
-                    <div>
-                        <p>{this.state.data.description}</p>
+            <div className="grid_container_dark">
+                <div className="child__content__answer">
+                    <div className="counter__left">
+                        <div className="counter__circle">
+                            {/* <span className="box firstNumber"></span> */}
+                            <span className="box secondNumber"></span>
+                        </div>
                     </div>
+                    <div className="question__right">{this.state.data.description}</div>
                 </div>
             </div>
         )

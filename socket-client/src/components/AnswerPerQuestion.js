@@ -52,7 +52,7 @@ class AnswerPerQuestion extends React.Component {
         
         
         return (
-            <div className="grid_container_dark">
+            <div className="grid__container">
                 <div className="child__content__answer">
                     <div className="content__left">
                             <p>{this.state.data.description}</p>
