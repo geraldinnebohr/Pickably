@@ -5,8 +5,9 @@
     width: 100vw;
     height: 100vh;
     /* body elements */
-    background-color: #000E57;
-    color: white;
+    background-image: url("../../images/background_dark.svg");
+    background-position: center;
+    color: black;
     font-size: 1.5vw;
     font-family: 'Alata';
 }

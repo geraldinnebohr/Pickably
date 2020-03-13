@@ -1,3 +1,16 @@
+.grid__container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    width: 100vw;
+    height: 100vh;
+    /* body elements */
+    background-color: #000E57;
+    color: white;
+    font-size: 1.5vw;
+    font-family: 'Alata';
+}
+
 .child__content__answer {
     /* grid-column: inicio / fin; */
     /* grid-column: 1 / -1 para que ocupe todos los espacios de una misma fila siempre */
