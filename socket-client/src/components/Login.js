@@ -3,6 +3,11 @@ import React from 'react';
 import './Styles/Login.css';
 
 class LogIn extends React.Component {
+
+    handleClick = () => {
+        window.location.href='./signup';
+    }
+
     render() {
         return (
             <div className="grid_container_dark">
@@ -10,7 +15,7 @@ class LogIn extends React.Component {
                     <div className="login__left">
                         Welcome back! <br/>
                         Are you new here?
-                        <button className="sign__up">SIGN UP</button>
+                        <button onClick={this.handleClick} className="sign__up">SIGN UP</button>
                     </div>
                     <div className="login__right">
                     Sign in to Pickably
