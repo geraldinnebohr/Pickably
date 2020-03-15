@@ -22,7 +22,7 @@ class Results extends React.Component {
         this.setState({ loading: true, error: null, index: i });
 
         try {
-            const response = await fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c");
+            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -58,9 +58,9 @@ class Results extends React.Component {
              <div className="grid_container_dark">
                 <div className="container__results">
                     <div className={iconClass[i++]}></div>
-                    {this.state.data.options.map((option) => {
+                    {this.state.data.answers.map((answer) => {
                         return (
-                            <li key={option._id} className="content__answer">{option.description}: {option.votes}</li>
+                            <li key={answer._id} className="content__answer">{answer.description}: {answer.votes}</li>
                         )
                     })}
                 </div>
