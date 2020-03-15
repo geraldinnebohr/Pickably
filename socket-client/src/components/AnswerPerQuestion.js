@@ -1,6 +1,11 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
+
 import './Styles/AnswerPerQuestion.css';
+import Circle from '../images/circle.svg';
+import Square from '../images/square.svg';
+import Triangle from '../images/triangle.svg';
+import Ex from '../images/ex.svg';
 
 class AnswerPerQuestion extends React.Component {
     state = {
@@ -21,7 +26,7 @@ class AnswerPerQuestion extends React.Component {
         setTimeout(() => {
             this.send(this.state.index);
             window.location.href='./results?index=' + this.state.index;
-        }, 5000)
+        }, 50000000)
     }
 
     fetchData = async () => {
@@ -51,6 +56,8 @@ class AnswerPerQuestion extends React.Component {
         let i = 0
         const iconClass = ["content__circle", "content__triangle", "content__square", "content__ex"]
         
+        let j = 0
+        const icons = [Circle, Triangle, Square, Ex]
         
         return (
             <div className="grid__container">
@@ -60,21 +67,20 @@ class AnswerPerQuestion extends React.Component {
                     </div>
                     <div className="content__right" >
                         <div className="content__container">
-                            {/* <div className={iconClass[i++]}></div> */}
                             {this.state.data.answers.map((answer) => {
                                 return (
                                     <>
-                                    <div className={iconClass[i++]}></div>
+                                    <div className={iconClass[i++]}>
+                                        <img src={icons[j++]} alt="icon" className="ans__icons"/>
+                                    </div>
                                     <li key={answer._id} className="content__answer">{answer.description}
                                     </li>
                                     </>
                                 )
                                 })}
-                            })}
                         </div>
                     </div>
                 </div>
-                {/* <button onClick={this.handleClick}>next</button> */}
             </div>
         )
     }
