@@ -3,6 +3,11 @@ import React from 'react';
 import './Styles/SignUp.css';
 
 class SignUp extends React.Component {
+
+    handleClick = () => {
+        window.location.href='./login'
+    }
+
     render() {
         return (
             <div className="grid_container_dark">
@@ -25,7 +30,7 @@ class SignUp extends React.Component {
                     <div className="content__signup__right">
                         We're glad to have you here! <br/>
                         Do you already have an account?
-                        <button className="login__button">LOG IN</button>
+                        <button className="login__button" onClick={this.handleClick} >LOG IN</button>
                     </div>
                 </div>
             </div>
