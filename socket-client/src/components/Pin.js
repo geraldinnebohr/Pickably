@@ -48,7 +48,7 @@ console.log(this.state.data)
         return (
             <div className="pin__container">
                 <div className="pin__content">
-                    {this.state.data._id}
+                    <p className="join__pin">Join with this pin: </p>{this.state.data._id}
                     <div className="pin__users">
                         {this.state.data.players.map((user) => {
                             return (

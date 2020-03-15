@@ -20,7 +20,13 @@
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    font-size: 5vw;
+    font-size: 5.5vw;
+}
+
+.join__pin {
+    font-size: 2.5vw;
+    color: cadetblue;
+    margin-bottom: 0px;
 }
 
 .pin__users {
