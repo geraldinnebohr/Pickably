@@ -8,8 +8,12 @@
     background-color: #090D28;
     /* empieza como padre aquí */
     display: grid;
-    grid-template-columns: 1fr 40%;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+}
+
+.icons {
+    width: 35%;
 }
 
 .content__squares {
@@ -24,7 +28,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    padding: 50px;
+    padding: 25px;
 }
 
 .squares__circle {
