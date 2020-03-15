@@ -1,6 +1,8 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
 
+import './Styles/Pin.css';
+
 class Pin extends React.Component {
     state = {
         loading: true,
@@ -44,16 +46,18 @@ class Pin extends React.Component {
         }
 console.log(this.state.data)
         return (
-            <div>
-            {this.state.data._id}
-                <div>
-                    {this.state.data.players.map((user) => {
-                        return (
-                            <li key={user._id}>{user.userName}</li>
-                        )
-                    })}
+            <div className="pin__container">
+                <div className="pin__content">
+                    <p className="join__pin">Join with this pin: </p>{this.state.data._id}
+                    <div className="pin__users">
+                        {this.state.data.players.map((user) => {
+                            return (
+                                <li key={user._id}>{user.userName}</li>
+                            )
+                        })}
+                    </div>
+                    <button onClick={this.handleClick} className="button__pin">START</button>
                 </div>
-                <button onClick={this.handleClick}>START</button>
             </div>
         )
     }
