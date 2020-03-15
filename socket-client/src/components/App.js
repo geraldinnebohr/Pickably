@@ -10,9 +10,8 @@ import Nickname from './Nickname';
 import Pin from './Pin';
 import Question from './Question';
 import Loading from './Loading';
-import Pruebas from './pruebas'
-
-import Login from '../pages/Login';
+import Pruebas from './pruebas';
+import SignUp from './SignUp';
 
 function App() {
     return (
@@ -28,6 +27,7 @@ function App() {
                     <Route exact path="/question" component={Question}/>
                     <Route exact path="/loading" component={Loading}/>
                     <Route exact path="/pruebas" component={Pruebas}/>
+                    <Route exact path="/signup" component={SignUp}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
