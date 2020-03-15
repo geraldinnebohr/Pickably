@@ -50,7 +50,7 @@
 
 .question__right {
     background: rgb(242,114,107);
-    background: linear-gradient(0deg, rgba(242,114,107,1) 0%, rgba(0,255,169,1) 0%, rgba(1,183,184,1) 50%, rgba(72,62,151,1) 100%);
+    background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(0,255,169,1) 0%, rgba(1,183,184,1) 50%, rgba(72,62,151,1) 100%);
     color: white;
     font-size: 5vw;
     display: flex;

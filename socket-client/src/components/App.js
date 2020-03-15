@@ -12,6 +12,7 @@ import Question from './Question';
 import Loading from './Loading';
 import Pruebas from './pruebas';
 import SignUp from './SignUp';
+import LogIn from './Login';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                     <Route exact path="/loading" component={Loading}/>
                     <Route exact path="/pruebas" component={Pruebas}/>
                     <Route exact path="/signup" component={SignUp}/>
+                    <Route exact path="/login" component={LogIn}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
