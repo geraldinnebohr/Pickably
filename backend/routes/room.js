@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const Questionary = require('../models/questionary.model');
 const Room = require('../models/room.model');
 
 // ---------- ROOM ---------- //
@@ -12,17 +12,18 @@ router.route('/:id').get((req, res) => {
 });
 
 // Add/Create a room
-router.route('/add').post((req, res) => {
-    const qtryId = req.body.qtryId;
-
-    const newRoom = new Room({
-        qtryId
-    });
-
-    newRoom.save()
-    .then(() => res.json('New room created! -> ' + newRoom._id))
+router.route('/new/:qtry_id').post((req, res) => {
+  Questionary.findById(req.params.qtry_id)
+    .then(questionary => {
+      const newRoom = new Room({
+          questionary
+      });
+      newRoom.save()
+      .then(() => res.json('New room created! -> ' + newRoom._id))
+      .catch(err => res.status(400).json('Error: ' + err));
+    })
     .catch(err => res.status(400).json('Error: ' + err));
-})
+});
 
 // ---------- PLAYER ---------- //
 
@@ -48,28 +49,37 @@ router.route('/:id/player/add').post((req, res) => {
 
 // Update player score
 router.route('/:id_room/player/update/:id_player').put((req, res) => {
-    Room.findById(req.params.id_room)
-      .then(room => {
-        if (!room) {
-          res.status(404).json('Error: Room not found :(');
-        } else {
-          const playerById = room.players.id(req.params.id_player);
-          if (!playerById) {
-            res.status(404).json('Error: Player not found :(');
-          }
-          playerById.score = req.body.score;
-          room.save()
-            .then(() => res.json('Player score updated!'))
-            .catch(err => res.status(400).json('Error: ' + err));
+  Room.findById(req.params.id_room)
+    .then(room => {
+      if (!room) {
+        res.status(404).json('Error: Room not found :(');
+      } else {
+        const playerById = room.players.id(req.params.id_player);
+        if (!playerById) {
+          res.status(404).json('Error: Player not found :(');
         }
-      })
-      .catch(err => res.status(400).json('Error: ' + err));
-  });
+        playerById.score = req.body.score;
+        room.save()
+          .then(() => res.json('Player score updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      }
+    })
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 // Delete room
 router.route('/del/:id').delete((req, res) => {
   Room.findByIdAndDelete(req.params.id)
     .then(() => res.json('Room deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// ---------- QUESTIONARY ---------- //
+
+// Get question by index
+router.route('/:id_room/question/:index').get((req, res) => {
+  Room.findById(req.params.id_room)
+    .then(room => res.json(room.questionary.questions[req.params.index]))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 

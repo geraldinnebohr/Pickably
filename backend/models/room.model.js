@@ -26,11 +26,10 @@ const roomSchema = new Schema(
             'type': String,
             'default': shortid.generate
         },
-        qtryId: {
-            type: String,
-            required: true
+        questionary: {
+            type: Schema.Types.Mixed
         },
-        players: [playerSchema]
+        players: [playerSchema],
     },
     {
     // support date time format
