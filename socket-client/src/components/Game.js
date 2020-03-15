@@ -1,6 +1,11 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
+
 import './Styles/Game.css';
+import Circle from '../images/circle.svg';
+import Square from '../images/square.svg';
+import Triangle from '../images/triangle.svg';
+import Ex from '../images/ex.svg';
 
 class Game extends React.Component {
     state = {
@@ -112,10 +117,18 @@ class Game extends React.Component {
             <div className="grid_container_light">
                 <div className="child__content__game">
                     <div className="content__squares">
-                        <button onClick={this.handleClickCircle} className="squares__circle"></button>
-                        <button onClick={this.handleClickTriangle} className="squares__triangle"></button>
-                        <button onClick={this.handleClickSquare} className="squares__square"></button>
-                        <button onClick={this.handleClickEx} className="squares__ex"></button>
+                        <button onClick={this.handleClickCircle} className="squares__circle">
+                            <img src={Circle} alt="circle" className="icons"/>
+                        </button>
+                        <button onClick={this.handleClickTriangle} className="squares__triangle">
+                        <img src={Triangle} alt="triangle" className="icons"/>
+                        </button>
+                        <button onClick={this.handleClickSquare} className="squares__square">
+                        <img src={Square} alt="square" className="icons"/>
+                        </button>
+                        <button onClick={this.handleClickEx} className="squares__ex">
+                        <img src={Ex} alt="ex" className="icons"/>
+                        </button>
                     </div>
                     <div className="content__score"></div>
                 </div>
