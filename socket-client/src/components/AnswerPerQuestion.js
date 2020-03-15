@@ -26,7 +26,7 @@ class AnswerPerQuestion extends React.Component {
         setTimeout(() => {
             this.send(this.state.index);
             window.location.href='./results?index=' + this.state.index;
-        }, 50000000)
+        }, 5000)
     }
 
     fetchData = async () => {
