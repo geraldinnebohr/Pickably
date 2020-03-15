@@ -18,7 +18,7 @@ class Nickname extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        fetch("http://localhost:5500/room/zHjAhZp7/player/add", {
+        fetch("http://localhost:5500/room/YQJvMjl0/player/add", {
             method: 'POST',
             body: JSON.stringify({
                 userName: data.get('userName')

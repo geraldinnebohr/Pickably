@@ -31,7 +31,8 @@ class AnswerPerQuestion extends React.Component {
         this.setState({ loading: true, error: null, index: i });
 
         try {
-            const response = await fetch("http://localhost:5500/questionary/5e44e0a71c9d440000177bf7/question/" + i);                const data = await response.json();
+            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
+            const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
             this.setState({ loading: false, error: error });
