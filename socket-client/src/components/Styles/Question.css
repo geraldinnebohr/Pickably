@@ -31,23 +31,6 @@
     content: "0\A 1\A 0\A 2\A  0\A 3\A 0\A 4\A 0\A 5";
 }
 
-/* .box.firstNumber:after {
-    animation: animate 5s steps(5) infinite;
-} */
-
-.box.secondNumber:after {
-    animation: animate 5s steps(5) infinite;
-}
-
-@keyframes animate{
-    0%{
-        top: 0;
-    }
-    100%{
-        top: -4em;
-    }
-}
-
 .question__right {
     background: rgb(242,114,107);
     background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(0,255,169,1) 0%, rgba(1,183,184,1) 50%, rgba(72,62,151,1) 100%);
@@ -59,3 +42,7 @@
     flex-direction: column;
     text-align: center;
 }
+
+/* counter */
+
+

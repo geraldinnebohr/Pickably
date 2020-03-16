@@ -42,7 +42,7 @@
     color: white;
     height: 12%;
     background: rgb(242,114,107);
-background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(0,248,170,1) 0%, rgba(1,183,184,1) 50%, rgba(66,70,153,1) 100%);
+    background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(0,248,170,1) 0%, rgba(1,183,184,1) 50%, rgba(66,70,153,1) 100%);
 }
 
 .game__container {
