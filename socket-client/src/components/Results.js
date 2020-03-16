@@ -73,7 +73,7 @@ class Results extends React.Component {
                                     <div className={iconClass[i++]}>
                                     <img src={icons[j++]} alt="icon" className="res__icons"/>
                                     </div>
-                                    <li key={option._id} className="content__answer">{answer.votes} votos</li>
+                                    <li key={answer._id} className="content__answer">{answer.votes} votos</li>
                                     </>
                                 )
                             })}

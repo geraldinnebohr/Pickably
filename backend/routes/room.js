@@ -89,8 +89,8 @@ router.route('/:id_room/question/:q_index/answer/:a_index').put((req, res) => {
       .then(room => {
           const q_i = req.params.q_index;
           const a_i = req.params.a_index;
+          
           room.questionary.questions[q_i].answers[a_i].votes += 1;
-          console.log(room)
           room.save()
           .then(() => res.json('Answer votes updated!'))
           .catch(err => res.status(400).json('Error: ' + err));
