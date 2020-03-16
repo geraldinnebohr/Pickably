@@ -27,7 +27,7 @@ class Results extends React.Component {
         this.setState({ loading: true, error: null, index: i });
 
         try {
-            const response = await fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c");
+            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -67,13 +67,13 @@ class Results extends React.Component {
                     {/* <div className="content__righttttt"> */}
                         <div className="content__container__results">
                             <div className="title__results">Resultados Parciales:</div>
-                            {this.state.data.options.map((option) => {
+                            {this.state.data.answers.map((answer) => {
                                 return (
                                     <>
                                     <div className={iconClass[i++]}>
                                     <img src={icons[j++]} alt="icon" className="res__icons"/>
                                     </div>
-                                    <li key={option._id} className="content__answer">{option.votes} votos</li>
+                                    <li key={option._id} className="content__answer">{answer.votes} votos</li>
                                     </>
                                 )
                             })}
@@ -82,6 +82,7 @@ class Results extends React.Component {
                             {/* </div> */}
                     {/* </div> */}
                     </div>
+
                 </div>
             </div>
         )

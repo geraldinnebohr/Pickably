@@ -57,7 +57,7 @@ io.on('connection', socket => {
 
   socket.on('time to vote', (i) => {
     console.log('Time to vote');
-    io.sockets.emit('time to vote', i++);
+    io.sockets.emit('time to vote', i);
   })
 
   socket.on('question results', (i) => {
