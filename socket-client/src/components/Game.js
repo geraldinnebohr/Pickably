@@ -25,10 +25,14 @@ class Game extends React.Component {
 
     handleClickCircle = e => {
         e.preventDefault();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e6468af44815d171a98e82e", {
+                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/0", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -46,10 +50,14 @@ class Game extends React.Component {
 
     handleClickTriangle = e => {
         e.preventDefault();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64688f44815d171a98e82d", {
+                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/1", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -67,10 +75,14 @@ class Game extends React.Component {
 
     handleClickSquare = e => {
         e.preventDefault();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64690944815d171a98e82f", {
+                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/2", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -88,10 +100,14 @@ class Game extends React.Component {
 
     handleClickEx = e => {
         e.preventDefault();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c/option/update/5e64690f44815d171a98e830", {
+                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/3", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{

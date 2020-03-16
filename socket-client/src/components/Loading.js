@@ -6,7 +6,7 @@ class Loading extends React.Component {
     render() {
         const socket = socketIOClient("localhost:5500");
         socket.once('time to vote', (i) => {
-            window.location.href='./game';
+            window.location.href='./game?index=' + i;
         })
 
         return (
