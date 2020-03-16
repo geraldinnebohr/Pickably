@@ -40,6 +40,11 @@ class Question extends React.Component {
             }
         }
 
+        handleCount = () => {
+           
+        }
+
+
     render() {
         if (this.state.loading === true) {
             return 'loading...';
@@ -49,14 +54,14 @@ class Question extends React.Component {
             return `Error: ${this.state.error.message}`;
         }
         
-        
         return (
             <div className="grid_container_dark">
                 <div className="child__content__answer">
                     <div className="counter__left">
                         <div className="counter__circle">
-                            {/* <span className="box firstNumber"></span> */}
-                            <span className="box secondNumber"></span>
+        <span className="timer">
+            5
+        </span>
                         </div>
                     </div>
                     <div className="question__right">{this.state.data.description}</div>
