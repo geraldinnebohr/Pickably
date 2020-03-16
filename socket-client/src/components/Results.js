@@ -27,7 +27,7 @@ class Results extends React.Component {
         this.setState({ loading: true, error: null, index: i });
 
         try {
-            const response = await fetch("http://localhost:5500/poll/5e6467de44815d171a98e82c");
+            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -66,22 +66,23 @@ class Results extends React.Component {
                  <div className="child__content__results">
                     {/* <div className="content__righttttt"> */}
                         <div className="content__container__results">
-                            <div className="title__results">Resultados Parciales:</div>
-                            {this.state.data.options.map((option) => {
+                            <div className="title__results">Results:</div>
+                            {this.state.data.answers.map((answer) => {
                                 return (
                                     <>
                                     <div className={iconClass[i++]}>
                                     <img src={icons[j++]} alt="icon" className="res__icons"/>
                                     </div>
-                                    <li key={answer._id} className="content__answer">{answer.votes} votos</li>
+                                <li key={answer._id} className="content__answer"><div className="ans__description">{answer.description}:</div> {answer.votes} votes</li>
                                     </>
                                 )
                             })}
                             {/* <div> */}
-                                <button onClick={this.handleClick} className="button__results">NEXT</button>
+                                {/* <button onClick={this.handleClick} className="button__results">NEXT</button> */}
                             {/* </div> */}
                     {/* </div> */}
                     </div>
+                    <button onClick={this.handleClick} className="button__results">NEXT</button>
                 </div>
             </div>
         )

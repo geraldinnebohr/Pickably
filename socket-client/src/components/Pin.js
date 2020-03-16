@@ -33,7 +33,7 @@ class Pin extends React.Component {
     render() {
 
         const socket = socketIOClient("localhost:5500");
-        socket.once('add player', (un) => {
+        socket.on('add player', (un) => {
             this.fetchData();
         })
 
