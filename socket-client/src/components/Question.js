@@ -1,7 +1,8 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
 
-import './Styles/Question.css'
+import './Styles/Question.css';
+import Gif from '../images/loader.gif';
 
 class Question extends React.Component {
     state = {
@@ -59,9 +60,10 @@ class Question extends React.Component {
                 <div className="child__content__answer">
                     <div className="counter__left">
                         <div className="counter__circle">
-        <span className="timer">
-            5
-        </span>
+                            {/* <span className="timer">
+                                5
+                            </span> */}
+                            <img src={Gif} alt="loading"/>
                         </div>
                     </div>
                     <div className="question__right">{this.state.data.description}</div>
