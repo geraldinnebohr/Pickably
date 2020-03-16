@@ -2,6 +2,24 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const shortid = require('shortid');
 
+const answerSchema = new Schema({
+    description: { type: String, required: true },
+    value: { type: Boolean, default: false },
+    votes: { type: Number, default: 0 }
+  });
+  
+  const questionSchema = new Schema({
+    description: { type: String, required: true },
+    answers: [answerSchema]
+  });
+  
+  const questionarySchema = new Schema({
+    description: { type: String, required: true },
+    questions: [questionSchema]
+  }, {
+    timestamps: true
+});
+
 const playerSchema = new Schema(
     {
         userName: {
@@ -26,9 +44,7 @@ const roomSchema = new Schema(
             'type': String,
             'default': shortid.generate
         },
-        questionary: {
-            type: Schema.Types.Mixed
-        },
+        questionary: questionarySchema,
         players: [playerSchema],
     },
     {
