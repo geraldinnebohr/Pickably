@@ -1,4 +1,5 @@
 import React from 'react';
+import socketIOClient from "socket.io-client";
 
 import './Styles/Home.css';
 import Logo from "../images/PICKABLY.png";
@@ -10,8 +11,31 @@ import Back from "../images/back.svg";
 
 class Home extends React.Component {
 
-    handleSubmit = () => {
-        // esta es la función vacía
+    constructor() {
+        super();
+        this.state = {
+          endpoint: 'http://localhost:5500'
+        };
+        this.socket = socketIOClient(this.state.endpoint);
+    }
+
+    handleClick = () => {
+        fetch("http://localhost:5500/room/new/5e6d50976fa1042c336da373", {
+            method: 'POST'
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            const rId = data;
+            this.socket.emit('hostCreateNewRoom', rId);
+            console.log('Create new room: '+ rId);
+            window.location.href='./pin?room=' + rId;
+        });
+    }
+
+    componentWillUnmount() {
+        this.socket.off("hostCreateNewRoom");
     }
 
     render() {
@@ -34,7 +58,7 @@ class Home extends React.Component {
                     <div className="home__quiz">
                         <div className="home__content">
                             <div className="home__quiz__title">quizzzz
-                                <button onSubmit={this.handleSubmit}>emma este es el boton</button>
+                                <button onClick={this.handleClick}>emma este es el boton</button>
                             </div>
                         </div>
                         <div className="arrow__left">

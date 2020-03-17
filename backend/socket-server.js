@@ -22,4 +22,6 @@ function hostCreateNewRoom() {
 
     // Join the room
     this.join(rId);
+
+    console.log('New room created')
 };

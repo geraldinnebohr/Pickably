@@ -5,20 +5,29 @@ import './Styles/Pin.css';
 
 class Pin extends React.Component {
     state = {
-        loading: true,
+        loading: false,
         error: null,
         data: [ ]
     };
 
     componentDidMount() {
-        this.fetchData();
+        //this.fetchData();
+
+        const socket = socketIOClient("localhost:5500");
+        socket.on('addPlayer', (un) => {
+            this.fetchData();
+        })
     }
 
     fetchData = async () => {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("http://localhost:5500/room/YQJvMjl0");
+            const response = await fetch("http://localhost:5500/room/" + room);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -31,12 +40,6 @@ class Pin extends React.Component {
     }
 
     render() {
-
-        const socket = socketIOClient("localhost:5500");
-        socket.on('add player', (un) => {
-            this.fetchData();
-        })
-
         if (this.state.loading === true) {
             return 'loading...';
         }
@@ -44,7 +47,7 @@ class Pin extends React.Component {
         if (this.state.error) {
             return `Error: ${this.state.error.message}`;
         }
-console.log(this.state.data)
+        
         return (
             <div className="pin__container">
                 <div className="pin__content">
