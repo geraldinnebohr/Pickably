@@ -15,10 +15,14 @@ class Nickname extends React.Component {
     }
 
     handleSubmit(event) {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
         event.preventDefault();
         const data = new FormData(event.target);
 
-        fetch("http://localhost:5500/room/YQJvMjl0/player/add", {
+        fetch("http://localhost:5500/room/" + room + "/player/add", {
             method: 'POST',
             body: JSON.stringify({
                 userName: data.get('userName')
@@ -27,9 +31,9 @@ class Nickname extends React.Component {
                 'Content-Type': 'application/json'
             }
         });
-        const un = data.get('userName');
-        console.log(un);
-        this.send(un);
+        const pn = data.get('userName');
+        // console.log(pn);
+        this.send({playerName: pn, roomId: room});
         window.location.href='./loading';
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import socketIOClient from "socket.io-client";
 
 import './Styles/Home.css';
 import Logo from "../images/PICKABLY.png";
@@ -13,8 +14,31 @@ import Bin from "../images/bin.svg";
 
 class Home extends React.Component {
 
-    handleSubmit = () => {
-        // esta es la función vacía
+    constructor() {
+        super();
+        this.state = {
+          endpoint: 'http://localhost:5500'
+        };
+        this.socket = socketIOClient(this.state.endpoint);
+    }
+
+    handleClick = () => {
+        fetch("http://localhost:5500/room/new/5e6d50976fa1042c336da373", {
+            method: 'POST'
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            const rId = data;
+            this.socket.emit('hostCreateNewRoom', rId);
+            console.log('Create new room: '+ rId);
+            window.location.href='./pin?room=' + rId;
+        });
+    }
+
+    componentWillUnmount() {
+        this.socket.off("hostCreateNewRoom");
     }
 
     render() {
@@ -38,7 +62,7 @@ class Home extends React.Component {
                         <div className="home__content">
                             <div className="home__quiz__box">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                                 <div className="home__social">
-                                    <img src={Play} alt="Play button" onSubmit={this.handleSubmit} className="button__home__play"/>
+                                    <img onClick={this.handleClick} src={Play} alt="Play button" onSubmit={this.handleSubmit} className="button__home__play"/>
                                     <img src={Edit} alt="Edit button" onSubmit={this.handleSubmit} className="button__home__edit"/>
                                     <img src={Bin} alt="Delete button" onSubmit={this.handleSubmit} className="button__home__delete"/>
                                 </div>
