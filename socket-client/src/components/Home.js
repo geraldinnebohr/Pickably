@@ -7,6 +7,9 @@ import User from "../images/user.svg";
 import Plus from "../images/plus.svg";
 import Next from "../images/next.svg";
 import Back from "../images/back.svg";
+import Play from "../images/play.svg";
+import Edit from "../images/edit.svg";
+import Bin from "../images/bin.svg";
 
 
 class Home extends React.Component {
@@ -57,8 +60,12 @@ class Home extends React.Component {
                     </div>
                     <div className="home__quiz">
                         <div className="home__content">
-                            <div className="home__quiz__title">quizzzz
-                                <button onClick={this.handleClick}>emma este es el boton</button>
+                            <div className="home__quiz__box">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                <div className="home__social">
+                                    <img onClick={this.handleClick} src={Play} alt="Play button" onSubmit={this.handleSubmit} className="button__home__play"/>
+                                    <img src={Edit} alt="Edit button" onSubmit={this.handleSubmit} className="button__home__edit"/>
+                                    <img src={Bin} alt="Delete button" onSubmit={this.handleSubmit} className="button__home__delete"/>
+                                </div>
                             </div>
                         </div>
                         <div className="arrow__left">
