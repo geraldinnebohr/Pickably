@@ -7,8 +7,30 @@ import Facebook from '../images/facebook.svg';
 import Logo from "../images/PICKABLY.png"
 
 class SignUp extends React.Component {
+    constructor() {
+        super();
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
     handleClick = () => {
+        window.location.href='./login'
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+
+        fetch("http://localhost:5500/user/signup", {
+            method: 'POST',
+            body: JSON.stringify({
+                username: data.get('userName'),
+                email: data.get('email'),
+                password: data.get('pwd')
+            }),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        });
         window.location.href='./login'
     }
 
@@ -24,12 +46,12 @@ class SignUp extends React.Component {
                             <img className="social__icons__auth" src={Facebook} alt="Facebook Button"/>
                         </div>
                         <div className="login__text">or use your email for registration:</div>
-                        <form action="">
-                            <input type="text" placeholder="Name" className="signup__input"/>
-                            <input type="text" placeholder="Email" className="signup__input"/>
-                            <input type="text" placeholder="Password" className="signup__input"/>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" placeholder="Name" className="signup__input" id="userName" name="userName"/>
+                            <input type="text" placeholder="Email" className="signup__input" id="email" name="email"/>
+                            <input type="text" placeholder="Password" className="signup__input" id="pwd" name="pwd"/>
+                            <button className="signup__button__sign">SIGN UP</button>
                         </form>
-                        <button className="signup__button__sign">SIGN UP</button>
                     </div>
                     <div className="login__left__sign">
                         <div className="title__login__right">We're glad to <br/> have you here!</div>
