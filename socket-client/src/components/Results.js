@@ -77,10 +77,6 @@ class Results extends React.Component {
                                     </>
                                 )
                             })}
-                            {/* <div> */}
-                                {/* <button onClick={this.handleClick} className="button__results">NEXT</button> */}
-                            {/* </div> */}
-                    {/* </div> */}
                     </div>
                     <button onClick={this.handleClick} className="button__results">NEXT</button>
                 </div>

@@ -19,7 +19,7 @@ router.route('/new/:qtry_id').post((req, res) => {
           questionary
       });
       newRoom.save()
-      .then(() => res.json('New room created! -> ' + newRoom._id))
+      .then(() => res.json(newRoom._id))
       .catch(err => res.status(400).json('Error: ' + err));
     })
     .catch(err => res.status(400).json('Error: ' + err));

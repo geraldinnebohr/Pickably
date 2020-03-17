@@ -46,29 +46,36 @@ const server = http.createServer(app)
 // This creates our socket using the instance of the server
 const io = socketIO(server)
 
+const pickably = require('./socket-server')
+
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
-  console.log('New client connected')
-  
-  socket.on('add player', (un) => {
-    console.log('Player added');
-    io.sockets.emit('add player', un);
-  })
-
-  socket.on('time to vote', (i) => {
-    console.log('Time to vote');
-    io.sockets.emit('time to vote', i);
-  })
-
-  socket.on('question results', (i) => {
-    console.log('Question results');
-    io.sockets.emit('question results', i++);
-  })
-  
-  // disconnect is fired when a client leaves the server
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  })
+  console.log('BIG SOCKET');
+  pickably.initGame(io, socket);
 })
+
+
+  //   console.log('New client connected')
+  
+//   socket.on('add player', (un) => {
+//     console.log('Player added');
+//     io.sockets.emit('add player', un);
+//   })
+
+//   socket.on('time to vote', (i) => {
+//     console.log('Time to vote');
+//     io.sockets.emit('time to vote', i);
+//   })
+
+//   socket.on('question results', (i) => {
+//     console.log('Question results');
+//     io.sockets.emit('question results', i++);
+//   })
+  
+//   // disconnect is fired when a client leaves the server
+//   socket.on('disconnect', () => {
+//     console.log('user disconnected')
+//   })
+// })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

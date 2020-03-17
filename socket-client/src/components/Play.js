@@ -33,7 +33,7 @@ class Play extends React.Component {
                 alert('NO Existe el pin: ' + this.state.value);
             } else {
                 // alert(' existe el pin: ' + this.state.value);
-                window.location.href='./nickname';
+                window.location.href='./nickname?room=' + this.state.value;
             }
         } catch (error) {
             this.setState({ loading: false, error: error });
