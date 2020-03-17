@@ -9,6 +9,11 @@ import Back from "../images/back.svg";
 
 
 class Home extends React.Component {
+
+    handleSubmit = () => {
+        // esta es la función vacía
+    }
+
     render() {
         return (
             <div className="grid_container_dark">
@@ -28,7 +33,9 @@ class Home extends React.Component {
                     </div>
                     <div className="home__quiz">
                         <div className="home__content">
-                            <div className="home__quiz__title">quizzzz</div>
+                            <div className="home__quiz__title">quizzzz
+                                <button onSubmit={this.handleSubmit}>emma este es el boton</button>
+                            </div>
                         </div>
                         <div className="arrow__left">
                             <img src={Back} alt="" className="img__home"/>
