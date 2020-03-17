@@ -15,6 +15,18 @@ const port = process.env.PORT || 5500;
 
 const app = express();
 
+const passport = require('passport');
+app.use(passport.initialize()); 
+app.use(passport.session()); 
+
+const User = require('./models/user.model'); 
+  
+const LocalStrategy = require('passport-local').Strategy; 
+passport.use(new LocalStrategy(User.authenticate())); 
+
+passport.serializeUser(User.serializeUser()); 
+passport.deserializeUser(User.deserializeUser()); 
+
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
 app.use(express.json());
@@ -32,13 +44,12 @@ connection.once('open', () => {
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
-
-//const creatorRouter = require('./routes/creators');
+const userRouter = require('./routes/user')
 
 app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
-//app.use('/creator', creatorRouter);
+app.use('/user', userRouter);
 
 // our server instance
 const server = http.createServer(app)
