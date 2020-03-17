@@ -49,3 +49,50 @@
     margin: 0px 30px;
 
 }
+
+.signup__title {
+    font-size: 4vw;
+    color: rgb(255, 0, 119);
+    margin-bottom: 3%;
+}
+
+.signup__button__sign {
+    width: 30%;
+    background-color: rgb(255, 0, 119);
+    color: white;
+    border-radius: 20px;
+    margin: 3% 36% 5% 36%;
+}
+
+.signup__input {
+    border-style: none;
+    background-color: #ece9e9;
+    border-radius: 7px;
+    margin-bottom: 2%;
+    color: rgba(1,183,184,1);
+    width: 60%;
+}
+
+.signup__input ::placeholder {
+    color: rgba(1,183,184,1);
+    opacity: 1;
+    margin-left: 5px;
+}
+
+.title__login__right {
+    font-size: 3vw;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+.login__left__sign {
+    background: rgb(242,114,107);
+    background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
+    color: white;
+    font-size: 1.8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}

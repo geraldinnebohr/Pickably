@@ -1,6 +1,8 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
-import BackgroundDark from './BackgroundDark';
+
+import './Styles/Loading.css'
+import Gif from '../images/loader.gif';
 
 class Loading extends React.Component {
     render() {
@@ -11,8 +13,10 @@ class Loading extends React.Component {
 
         return (
             <div className="grid_container_dark">
-                <div className="child__content__answer">
-                    prueba
+                <div className="loading__content">
+                    {/* <div className="loading__counter"> */}
+                        <img src={Gif} alt="loading"/>
+                    {/* </div> */}
                 </div>
             </div>
         )

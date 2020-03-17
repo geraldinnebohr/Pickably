@@ -4,11 +4,12 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    background-color: #E6EFF3;
 }
 
 .counter__circle {
-    background-color: #3ee1ff;
-    height: 40%;
+    /* background-color: #3ee1ff; */
+    height: 70%;
     width: 50%;
     border-radius: 50%;
     font-size: 8vw;

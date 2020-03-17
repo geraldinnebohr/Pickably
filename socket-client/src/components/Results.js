@@ -66,23 +66,23 @@ class Results extends React.Component {
                  <div className="child__content__results">
                     {/* <div className="content__righttttt"> */}
                         <div className="content__container__results">
-                            <div className="title__results">Resultados Parciales:</div>
+                            <div className="title__results">Results:</div>
                             {this.state.data.answers.map((answer) => {
                                 return (
                                     <>
                                     <div className={iconClass[i++]}>
                                     <img src={icons[j++]} alt="icon" className="res__icons"/>
                                     </div>
-                                    <li key={answer._id} className="content__answer">{answer.votes} votos</li>
+                                <li key={answer._id} className="content__answer"><div className="ans__description">{answer.description}:</div> {answer.votes} votes</li>
                                     </>
                                 )
                             })}
                             {/* <div> */}
-                                <button onClick={this.handleClick} className="button__results">NEXT</button>
+                                {/* <button onClick={this.handleClick} className="button__results">NEXT</button> */}
                             {/* </div> */}
                     {/* </div> */}
                     </div>
-
+                    <button onClick={this.handleClick} className="button__results">NEXT</button>
                 </div>
             </div>
         )
