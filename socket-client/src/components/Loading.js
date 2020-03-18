@@ -10,15 +10,16 @@ class Loading extends React.Component {
     componentDidMount() {
         const search = window.location.search;
         const params = new URLSearchParams(search);
-        const room = params.get('room');
+        const pRoom = params.get('room');
+        const pName = params.get('name');
 
         socket.on('connect', function() {
-            socket.emit('room', room);
+            socket.emit('room', pRoom);
             console.log('loading/room >>>');
         });
 
         socket.on('showButtons', (data) => {
-            window.location.href='./game?index=' + data.index + '&room=' + data.room;
+            window.location.href='./game?index=' + data.index + '&room=' + data.room + '&name=' + pName;
         });
 
         socket.on('finishGame', (room) => {

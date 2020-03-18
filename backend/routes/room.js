@@ -59,25 +59,6 @@ router.route('/:id/player/add').post((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
-// Update player score
-router.route('/:id_room/player/update/:id_player').put((req, res) => {
-  Room.findById(req.params.id_room)
-    .then(room => {
-      if (!room) {
-        res.status(404).json('Error: Room not found :(');
-      } else {
-        const playerById = room.players.id(req.params.id_player);
-        if (!playerById) {
-          res.status(404).json('Error: Player not found :(');
-        }
-        playerById.score = req.body.score;
-        room.save()
-          .then(() => res.json('Player score updated!'))
-          .catch(err => res.status(400).json('Error: ' + err));
-      }
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 // Delete room
 router.route('/del/:id').delete((req, res) => {
@@ -86,14 +67,36 @@ router.route('/del/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-// ---------- QUESTIONARY ---------- //
-
-// Get question by index
-router.route('/:id_room/question/:index').get((req, res) => {
+// Update player score
+router.route('/:id_room/question/:q_index/answer/:a_index/player/:name').put((req, res) => {
   Room.findById(req.params.id_room)
-    .then(room => res.json(room.questionary.questions[req.params.index]))
+    .then(room => {
+
+      const q_i = req.params.q_index;
+      const a_i = req.params.a_index;
+
+      const playerByName = room.players.find(n => n.userName == req.params.name);
+
+      console.log('q_i: ' + q_i + '| a_i: ' + a_i + '| player: ' + playerByName)
+      if (!playerByName) {
+        res.status(404).json('Error: Player not found :(');
+      }
+      //playerByName.score += parseInt(req.body.increment);
+      
+      if (room.questionary.questions[q_i].answers[a_i].value) {
+        playerByName.score += 5;
+      }
+          
+      room.questionary.questions[q_i].answers[a_i].votes += 1;
+
+      room.save()
+        .then(() => res.json('Player score updated, and answer votes too'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    })
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+// ---------- QUESTIONARY ---------- //
 
 // Increment room votes
 router.route('/:id_room/question/:q_index/answer/:a_index').put((req, res) => {
@@ -108,6 +111,13 @@ router.route('/:id_room/question/:q_index/answer/:a_index').put((req, res) => {
           .catch(err => res.status(400).json('Error: ' + err));
       })
       .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// Get question by index
+router.route('/:id_room/question/:index').get((req, res) => {
+  Room.findById(req.params.id_room)
+    .then(room => res.json(room.questionary.questions[req.params.index]))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 
 // Export routes
