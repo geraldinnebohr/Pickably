@@ -64,13 +64,13 @@ class New extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <input type="text" className="new__question" placeholder="Write your questionary name here" id="q_description" name="description"/>
+                        <input type="text" className="new__question" placeholder="Write your questionary name here" id="description" name="description"/>
                         <button className="new__button" onClick={this.handleClick}>
                             <img src={Plus} alt="New quiz" className="new__plus"/>Question
                         </button>
                     </div>
                     <div>
-                    <input type="text" className="new__questionary" placeholder="Write your question here" id="qtn_description" name="description"/>
+                    <input type="text" className="new__questionary" placeholder="Write your question here" id="description" name="description"/>
                     </div>
                     <div className="new__box">
                         <div className="new__box__answers">
