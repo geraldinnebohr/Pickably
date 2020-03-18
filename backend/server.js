@@ -50,9 +50,24 @@ const pickably = require('./socket-server')
 
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
-  console.log('BIG SOCKET');
-  pickably.initGame(io, socket);
+
+  socket.on('room', (room) => {
+    socket.join(room);
+    console.log('<<< room: ' + room)
+    io.sockets.in(room).emit('message', 'what is going on, party people?');
+  })
+
+  socket.on('newPlayer', (room) => {
+    console.log('<<< newPlayer: ' + room);
+    io.sockets.in(room).emit('updatePlayersList', room);
+  })
+
 })
+
+
+//   console.log('BIG SOCKET');
+//   pickably.initGame(io, socket);
+// })
 
 
   //   console.log('New client connected')

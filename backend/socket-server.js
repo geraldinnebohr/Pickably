@@ -1,5 +1,5 @@
 exports.initGame = function(sio, socket) {
-    const io = sio;
+    io = sio;
     const gameSocket = socket;
 
     gameSocket.emit('connected', { message: "You are connected!" });
@@ -8,20 +8,29 @@ exports.initGame = function(sio, socket) {
     gameSocket.on('hostCreateNewRoom', hostCreateNewRoom);
 
     // Player Events
+    gameSocket.on('playerJoinRoom', playerJoinRoom);
+
 }
 
-function hostCreateNewRoom() {
+// HOST / USER
+function hostCreateNewRoom(roomId) {
     // >>> AQUI CODIGO PARA CREAR UNA
     //    NUEVA ROOM <<<
 
-    // Room's id
-    const rId = 'YQJvMjl0';
-
     // Return room and socket id
-    this.emit('newRoom', { roomId: rId, mySocketId: this.id });
+    this.emit('newRoom', { roomId: roomId, mySocketId: this.id });
 
     // Join the room
-    this.join(rId);
+    this.join(roomId);
 
-    console.log('New room created')
+    console.log('New room created: ' + roomId)
 };
+
+// PLAYER
+function playerJoinRoom(data) {
+    const sock = this;
+
+    sock.join(data.roomId);
+    console.log('player jonied')
+    io.sockets.in(data.roomId).emit('playerJoinRoom', data);
+}
