@@ -3,7 +3,11 @@ import React from "react";
 import './Styles/New.css';
 import Logo from "../images/PICKABLY.png";
 import User from "../images/user.svg";
-import Plus from "../images/plus.svg";
+import Plus from "../images/plusViolet.svg";
+import Circle from '../images/circle.svg';
+import Square from '../images/square.svg';
+import Triangle from '../images/triangle.svg';
+import Ex from '../images/ex.svg';
 
 class New extends React.Component {
     render() {
@@ -25,11 +29,35 @@ class New extends React.Component {
                     <div className="new__box">
                         <div className="new__box__answers">
                             <div></div>
-                            <div className="content__circle"></div>
-                            <div className="content__triangle"></div>
-                            <div className="content__square"></div>
-                            <div className="content__ex"></div>
+                            <div className="content__circle">
+                                <img src={Circle} alt="" className="new__icons"/>
+                            </div>
+                            <div className="content__triangle">
+                            <img src={Triangle} alt="" className="new__icons"/>
+                            </div>
+                            <div className="content__square">
+                            <img src={Square} alt="" className="new__icons"/>
+                            </div>
+                            <div className="content__ex">
+                            <img src={Ex} alt=""  className="new__icons"/>
+                            </div>
+                            <div></div>
+                            <input type="text" placeholder="First answer" className="new__answer1"/>
+                            <input type="text" placeholder="First answer" className="new__answer2"/>
+                            <input type="text" placeholder="First answer" className="new__answer3"/>
+                            <input type="text" placeholder="First answer" className="new__answer4"/>
+                            <div className="new__true">True</div>
+                            <div className="new__check1"><input type="checkbox"/></div>
+                            <div className="new__check2"><input type="checkbox"/></div>
+                            <div className="new__check3"><input type="checkbox"/></div>
+                            <div className="new__check4"><input type="checkbox"/></div>
+                            <div className="new__false">False</div>
+                            <div className="new__false1"><input type="checkbox"/></div>
+                            <div className="new__false2"><input type="checkbox"/></div>
+                            <div className="new__false3"><input type="checkbox"/></div>
+                            <div className="new__false4"><input type="checkbox"/></div>
                         </div>
+                        <button className="new__box__button">Save</button>
                     </div>
                 </div>
             </div>
