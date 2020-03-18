@@ -12,6 +12,7 @@ class Results extends React.Component {
         loading: true,
         error: null,
         index: null,
+        room: null,
         data: [ ],
         endpoint: "localhost:5500",
     };
@@ -24,10 +25,12 @@ class Results extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
-        this.setState({ loading: true, error: null, index: i });
+        const room = params.get('room');
+
+        this.setState({ loading: true, error: null, index: i, room: room });
 
         try {
-            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
+            const response = await fetch("http://localhost:5500/room/" + room + "/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -37,7 +40,7 @@ class Results extends React.Component {
 
     handleClick = () => {
         const iNext = 1 + +this.state.index;
-        window.location.href='./question?index=' + iNext;
+        window.location.href='./question?room=' + this.state.room + '&index=' + iNext;
     }
 
     render() {

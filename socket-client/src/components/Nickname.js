@@ -47,7 +47,7 @@ class Nickname extends React.Component {
             }
         });
         socket.emit('newPlayer', room);
-        window.location.href = '/loading';
+        window.location.href = '/loading?room=' + room;
     }
 
     render() {

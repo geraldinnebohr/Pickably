@@ -46,15 +46,15 @@ const server = http.createServer(app)
 // This creates our socket using the instance of the server
 const io = socketIO(server)
 
-const pickably = require('./socket-server')
+//const pickably = require('./socket-server')
 
 // This is what the socket.io syntax is like, we will work this later
 io.on('connection', socket => {
 
   socket.on('room', (room) => {
     socket.join(room);
-    console.log('<<< room: ' + room)
-    io.sockets.in(room).emit('message', 'what is going on, party people?');
+    console.log('<<< Client connected in room: ' + room)
+    //io.sockets.in(room).emit('message', 'what is going on, party people?');
   })
 
   socket.on('newPlayer', (room) => {
@@ -62,6 +62,24 @@ io.on('connection', socket => {
     io.sockets.in(room).emit('updatePlayersList', room);
   })
 
+  socket.on('playerVotes', (data) => {
+    console.log('<<< playerVotes: ' + data.room);
+    io.sockets.in(data.room).emit('showButtons', data);
+  })
+
+  socket.on('timeCompleted', (data) => {
+    console.log('<<< timeCompleted: ' + data.room);
+    io.sockets.in(data.room).emit('startLoading', data);
+  })
+
+  socket.on('gameover', (room) => {
+    console.log('<<< gameover: ' + room);
+    io.sockets.in(room).emit('finishGame', room);
+  })
+
+  // socket.on('disconnect', () => {
+  //   console.log('user disconnected')
+  // })
 })
 
 
