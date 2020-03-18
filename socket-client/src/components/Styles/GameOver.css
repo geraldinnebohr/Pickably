@@ -4,7 +4,7 @@
     grid-row-start: 2;
     grid-row-end: 3;
     display: grid;
-    grid-template-columns: 1fr 70% 1fr;
+    grid-template-columns: 1fr 70% 20%;
     grid-template-rows: 1fr 60% 1fr;
 }
 
@@ -83,6 +83,8 @@
     flex-direction: column;
 }
 
+
+
 .gameover__third {
     grid-column-start: 3;
     grid-column-end: 4;
@@ -109,11 +111,54 @@
     flex-direction: column;
 }
 
-.winner {
+.winner__second {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
     display: flex;
     color: white;
     font-size: 2vw;
     justify-content: center;
     align-items: center;
     flex-direction: column; 
+}
+
+.winner__first {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    color: white;
+    font-size: 2vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.winner__third {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+    color: white;
+    font-size: 2vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.winner__button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 2vw;
+    height: 17%;
+    color: white;
+    border-radius: 20px;
+    background: rgb(242,114,107);
+    background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(0,255,255,1) 0%, rgba(147,39,143,1) 99%);
 }

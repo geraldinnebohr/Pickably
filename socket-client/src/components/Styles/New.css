@@ -8,17 +8,29 @@
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 15% 20% 1fr;
+    grid-template-rows: 15% 15% 10% 1fr;
 }
 
 .new__question {
-    height: 50%;
-    width: 65%;
+    height: 60%;
+    width: 60%;
     margin-top: 3%;
     margin-left: 3%;
     font-size: 2vw;
     border: none;
     border-bottom: dashed 1px black;
+}
+
+.new__questionary {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    font-size: 2vw;
+    border: none;
+    border-bottom: dashed 1px black;
+    height: 80%;
+    width: 65%;
+    margin-top: 0;
+    margin-left: 3%;
 }
 
 .new__button {
@@ -134,6 +146,7 @@
 }
 
 .new__check1 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -146,6 +159,7 @@
 }
 
 .new__check2 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -158,6 +172,7 @@
 }
 
 .new__check3 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -170,6 +185,7 @@
 }
 
 .new__check4 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -182,6 +198,7 @@
 }
 
 .new__false1 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -194,6 +211,7 @@
 }
 
 .new__false2 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -206,6 +224,7 @@
 }
 
 .new__false3 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -218,6 +237,7 @@
 }
 
 .new__false4 {
+    margin-left: 40%;
     display: flex;
     justify-content: center;
     align-content: center;

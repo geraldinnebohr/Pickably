@@ -10,10 +10,53 @@ import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
 class New extends React.Component {
+    constructor() {
+        super();
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        fetch("http://localhost:5500/questionary/add", {
+            method: 'POST',
+            body: JSON.stringify({
+                description: data.get('description'),
+                questions: [
+                    {description: data.get('description')},
+                    {answers: [
+                        {value: data.get('value')},
+                        {description: data.get('description')}
+                    ]}
+                ]}
+            ),
+            headers:{
+                'Content-Type': 'application/json'
+            }            
+        });
+        window.location.href = './new';
+    }
+
+    handleClick() {
+        window.location.href='./new';
+    }
+
+    handleCheck() {
+        ("input[type=checkbox]").change(function(){
+            if ( this.is(":checked") ){
+                this.id = "true";
+            } else {
+                this.id = "false";
+            }
+        });
+    }
+
     render() {
         return (
             <div className="grid_container_dark">
-                <div className="new__container">
+                <form className="new__container" onSubmit={this.handleSubmit}>
                     <div className="home__header">
                         <img src={Logo} alt="Logo Pickably" className="home__logo"/>
                         <div className="home__navbar">
@@ -21,10 +64,13 @@ class New extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <input type="text" className="new__question" placeholder="Write your question here"/>
-                        <button className="new__button">
+                        <input type="text" className="new__question" placeholder="Write your questionary name here" id="q_description" name="description"/>
+                        <button className="new__button" onClick={this.handleClick}>
                             <img src={Plus} alt="New quiz" className="new__plus"/>Question
                         </button>
+                    </div>
+                    <div>
+                    <input type="text" className="new__questionary" placeholder="Write your question here" id="qtn_description" name="description"/>
                     </div>
                     <div className="new__box">
                         <div className="new__box__answers">
@@ -42,15 +88,15 @@ class New extends React.Component {
                             <img src={Ex} alt=""  className="new__icons"/>
                             </div>
                             <div></div>
-                            <input type="text" placeholder="First answer" className="new__answer1"/>
-                            <input type="text" placeholder="First answer" className="new__answer2"/>
-                            <input type="text" placeholder="First answer" className="new__answer3"/>
-                            <input type="text" placeholder="First answer" className="new__answer4"/>
+                            <input type="text" placeholder="First answer" className="new__answer1" id="answer_description" name="description"/>
+                            <input type="text" placeholder="Second answer" className="new__answer2" id="answer_description" name="description"/>
+                            <input type="text" placeholder="Third answer" className="new__answer3" id="answer_description" name="description"/>
+                            <input type="text" placeholder="Fourth answer" className="new__answer4" id="answer_description" name="description"/>
                             <div className="new__true">True</div>
-                            <div className="new__check1"><input type="checkbox"/></div>
-                            <div className="new__check2"><input type="checkbox"/></div>
-                            <div className="new__check3"><input type="checkbox"/></div>
-                            <div className="new__check4"><input type="checkbox"/></div>
+                            <div className="new__check1"><input type="checkbox" id="true" name="value"/></div>
+                            <div className="new__check2"><input type="checkbox"id="true" name="value"/></div>
+                            <div className="new__check3"><input type="checkbox"id="true" name="value"/></div>
+                            <div className="new__check4"><input type="checkbox"id="true" name="value"/></div>
                             <div className="new__false">False</div>
                             <div className="new__false1"><input type="checkbox"/></div>
                             <div className="new__false2"><input type="checkbox"/></div>
@@ -59,7 +105,7 @@ class New extends React.Component {
                         </div>
                         <button className="new__box__button">Save</button>
                     </div>
-                </div>
+                </form>
             </div>
         )
     }

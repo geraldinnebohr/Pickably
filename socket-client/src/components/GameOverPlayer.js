@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Styles/GameOver.css'
 
-class GameOver extends React.Component {
+class GameOverPlayer extends React.Component {
     state = {
         loading: true,
         error: null,
@@ -26,7 +26,7 @@ class GameOver extends React.Component {
     }
 
     handleClick = () => {
-        window.location.href='./home'
+        window.location.href='./play'
     }
 
     render() {
@@ -52,11 +52,11 @@ class GameOver extends React.Component {
                                 )
                             })}
                     </div>
-                    <button className="winner__button" onClick={this.handleClick}>Back home</button>
+                    <button className="winner__button" onClick={this.handleClick}>Back to play</button>
                 </div>
             </div>
         )
     }
 }
 
-export default GameOver;
+export default GameOverPlayer;
