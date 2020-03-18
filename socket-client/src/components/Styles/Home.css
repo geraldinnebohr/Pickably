@@ -61,6 +61,16 @@
     border-radius: 20px;
     font-size: 2vw;
     color: white;
+    cursor: pointer;
+}
+
+.home__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.home__button:active {
+    transform: translateY(4px);
 }
 
 .home__plus {
@@ -104,16 +114,43 @@
     width: 7%;
     margin: 10% 10% 0 5%;
     float: left;
+    cursor: pointer;
+}
+
+.button__home__play:hover {
+    opacity: 0.5;
+}
+
+.button__home__play:active {
+    transform: translateY(4px);
 }
 
 .button__home__edit {
     width: 6%;
     margin: 10% 2% 0 55%;
+    cursor: pointer;
+}
+
+.button__home__edit:hover {
+    opacity: 0.5;
+}
+
+.button__home__edit:active {
+    transform: translateY(4px);
 }
 
 .button__home__delete {
     width: 6%;
     margin: 10% 2% 0 1%;
+    cursor: pointer;
+}
+
+.button__home__delete:hover {
+    opacity: 0.5;
+}
+
+.button__home__delete:active {
+    transform: translateY(4px);
 }
 
 .arrow__left {

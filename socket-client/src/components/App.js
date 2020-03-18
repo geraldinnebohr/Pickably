@@ -14,6 +14,7 @@ import Pruebas from './pruebas';
 import SignUp from './SignUp';
 import LogIn from './Login';
 import Home from './Home';
+import New from './New';
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                     <Route exact path="/signup" component={SignUp}/>
                     <Route exact path="/login" component={LogIn}/>
                     <Route exact path="/home" component={Home}/>
+                    <Route exact path="/new" component={New}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
