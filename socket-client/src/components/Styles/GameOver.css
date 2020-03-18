@@ -37,7 +37,7 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     /* background-color: white; */
@@ -63,7 +63,7 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     /* background-color: white; */
@@ -89,7 +89,7 @@
     grid-row-start: 1;
     grid-row-end: 2;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     /* background-color: white; */

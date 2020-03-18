@@ -3,6 +3,12 @@ import React from 'react';
 import './Styles/GameOver.css'
 
 class GameOver extends React.Component {
+    state = {
+        loading: true,
+        error: null,
+        data: [ ],
+    }
+
     render() {
         return (
             <div className="grid_container_dark">
