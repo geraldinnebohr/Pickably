@@ -7,25 +7,39 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
+const socket = socketIOClient("localhost:5500");
+
 class AnswerPerQuestion extends React.Component {
     state = {
         loading: true,
         error: null,
         index: null,
+        room: null,
         data: [ ],
     };
 
     // sending sockets
-    send = (i) => {
-        const socket = socketIOClient("localhost:5500");
-        socket.emit('question results', i);
+    send = (room) => {
+        socket.emit('timeCompleted', { room: room, index: this.state.index });
+        console.log('answer/timeCompleted >>>');
     }
 
     componentDidMount() {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
+        //console.log(room)
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('question/room >>>');
+        });
+
         this.fetchData();
         setTimeout(() => {
-            this.send(this.state.index);
-            window.location.href='./results?index=' + this.state.index;
+            this.send(room);
+            window.location.href='./results?room=' + this.state.room + '&index=' + this.state.index;
         }, 5000)
     }
 
@@ -33,10 +47,12 @@ class AnswerPerQuestion extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
-        this.setState({ loading: true, error: null, index: i });
+        const room = params.get('room');
+
+        this.setState({ loading: true, error: null, index: i, room: room });
 
         try {
-            const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
+            const response = await fetch("http://localhost:5500/room/" + room + "/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {

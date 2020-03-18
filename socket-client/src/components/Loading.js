@@ -4,13 +4,25 @@ import socketIOClient from "socket.io-client";
 import './Styles/Loading.css'
 import Gif from '../images/loader.gif';
 
-class Loading extends React.Component {
-    render() {
-        const socket = socketIOClient("localhost:5500");
-        socket.once('time to vote', (i) => {
-            window.location.href='./game?index=' + i;
-        })
+const socket = socketIOClient("localhost:5500");
 
+class Loading extends React.Component {
+    componentDidMount() {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('loading/room >>>');
+        });
+
+        socket.on('showButtons', (data) => {
+            window.location.href='./game?index=' + data.index + '&room=' + data.room;
+        })
+    }
+
+    render() {
         return (
             <div className="grid_container_dark">
                 <div className="loading__content">

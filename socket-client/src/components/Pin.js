@@ -22,7 +22,7 @@ class Pin extends React.Component {
 
         socket.on('connect', function() {
             socket.emit('room', room);
-            console.log('room >>>')
+            console.log('pin/room >>>');
         });
 
         this.fetchData()
@@ -32,7 +32,7 @@ class Pin extends React.Component {
         const comp = this;
 
         socket.on('updatePlayersList', function(room) {
-            console.log('<<< updatePlayersList');
+            console.log('<<< pin/updatePlayersList');
             comp.fetchData();
         });
 
@@ -56,7 +56,11 @@ class Pin extends React.Component {
     }
 
     handleClick = () => {
-        window.location.href='./question?index=0';
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
+        window.location.href='./question?room=' + room + '&index=0';
     }
 
     render() {

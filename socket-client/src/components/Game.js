@@ -7,6 +7,8 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
+const socket = socketIOClient("localhost:5500");
+
 class Game extends React.Component {
     state = {
         loading: true,
@@ -16,6 +18,19 @@ class Game extends React.Component {
     };
 
     componentDidMount() {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('game/room >>>');
+        });
+
+        socket.on('startLoading', (data) => {
+            window.location.href='./loading?room=' + data.room;
+        })
+
         this.fetchData();
     };
 
@@ -28,24 +43,25 @@ class Game extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
+        const room = params.get('room');
 
         this.setState({ loading: true, error: null });
     
-            try {
-                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/0", {
-                    method: 'PUT',
-                    body: JSON.stringify(this.state.data),
-                    headers:{
-                        'Content-Type': 'application/json'
-                      }
-                }).then(update => update.json());
-                this.setState({ loading: false, updated: true });
-                console.log("done!");
-                window.location.href='./loading';
-            } catch (error) {
-                console.log(error);
-                this.setState({ loading: false, error: error });
-            }
+        try {
+            fetch("http://localhost:5500/room/" + room + "/question/" + i + "/answer/0", {
+                method: 'PUT',
+                body: JSON.stringify(this.state.data),
+                headers:{
+                    'Content-Type': 'application/json'
+                  }
+            }).then(update => update.json());
+            this.setState({ loading: false, updated: true });
+            console.log("done!");
+            window.location.href='./loading?room=' + room;
+        } catch (error) {
+            console.log(error);
+            this.setState({ loading: false, error: error });
+        }
     };
 
     handleClickTriangle = e => {
@@ -53,24 +69,25 @@ class Game extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
+        const room = params.get('room');
 
         this.setState({ loading: true, error: null });
     
-            try {
-                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/1", {
-                    method: 'PUT',
-                    body: JSON.stringify(this.state.data),
-                    headers:{
-                        'Content-Type': 'application/json'
-                      }
-                }).then(update => update.json());
-                this.setState({ loading: false, updated: true });
-                console.log("done!");
-                window.location.href='./loading';
-            } catch (error) {
-                console.log(error);
-                this.setState({ loading: false, error: error });
-            }
+        try {
+            fetch("http://localhost:5500/room/" + room + "/question/" + i + "/answer/1", {
+                method: 'PUT',
+                body: JSON.stringify(this.state.data),
+                headers:{
+                    'Content-Type': 'application/json'
+                  }
+            }).then(update => update.json());
+            this.setState({ loading: false, updated: true });
+            console.log("done!");
+            window.location.href='./loading?room=' + room;
+        } catch (error) {
+            console.log(error);
+            this.setState({ loading: false, error: error });
+        }
     };
 
     handleClickSquare = e => {
@@ -78,11 +95,12 @@ class Game extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
+        const room = params.get('room');
 
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/2", {
+                fetch("http://localhost:5500/room/" + room + "/question/" + i + "/answer/2", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -91,7 +109,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                window.location.href='./loading';
+                window.location.href='./loading?room=' + room;
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -103,11 +121,12 @@ class Game extends React.Component {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
+        const room = params.get('room');
 
         this.setState({ loading: true, error: null });
     
             try {
-                fetch("http://localhost:5500/room/YQJvMjl0/question/" + i + "/answer/3", {
+                fetch("http://localhost:5500/room/" + room + "/question/" + i + "/answer/3", {
                     method: 'PUT',
                     body: JSON.stringify(this.state.data),
                     headers:{
@@ -116,7 +135,7 @@ class Game extends React.Component {
                 }).then(update => update.json());
                 this.setState({ loading: false, updated: true });
                 console.log("done!");
-                window.location.href='./loading';
+                window.location.href='./loading?room=' + room;
             } catch (error) {
                 console.log(error);
                 this.setState({ loading: false, error: error });
@@ -124,11 +143,6 @@ class Game extends React.Component {
     };
 
     render() {
-        const socket = socketIOClient("localhost:5500");
-        socket.once('question results', (i) => {
-            window.location.href='./loading';
-        })
-
         return (
             <div className="grid_container_light">
                 <div className="child__content__game">

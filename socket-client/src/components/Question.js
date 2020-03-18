@@ -4,46 +4,57 @@ import socketIOClient from "socket.io-client";
 import './Styles/Question.css';
 import Gif from '../images/loader.gif';
 
+const socket = socketIOClient("localhost:5500");
+
 class Question extends React.Component {
     state = {
         loading: true,
         error: null,
         index: null,
+        room: null,
         data: [ ],
         redirect: false
     };
 
     // sending sockets
-    send = (i) => {
-        const socket = socketIOClient("localhost:5500");
-        socket.emit('time to vote', i);
+    send = (room) => {
+        socket.emit('playerVotes', { room: room, index: this.state.index });
+        console.log('question/playerVotes >>>');
     }
 
     componentDidMount() {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
+        //console.log(room)
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('question/room >>>');
+        });
+
         this.fetchData();
         setTimeout(() => {
-            this.send(this.state.index);
-            window.location.href='./answers?index=' + this.state.index;
+            this.send(room);
+            window.location.href='./answers?room=' + this.state.room + '&index=' + this.state.index;
         }, 5000)
     }  
 
     fetchData = async () => {
-            const search = window.location.search;
-            const params = new URLSearchParams(search);
-            const i = params.get('index');
-            this.setState({ loading: true, error: null, index: i });
-            try {
-                const response = await fetch("http://localhost:5500/room/YQJvMjl0/question/" + i);
-                const data = await response.json();
-                this.setState({ loading: false, data: data });
-            } catch (error) {
-                this.setState({ loading: false, error: error });
-            }
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const i = params.get('index');
+        const room = params.get('room');
+        this.setState({ loading: true, error: null, index: i, room: room });
+        try {
+            const response = await fetch("http://localhost:5500/room/" + room + "/question/" + i);
+            const data = await response.json();
+            this.setState({ loading: false, data: data });
+        } catch (error) {
+            this.setState({ loading: false, error: error });
         }
-
-        handleCount = () => {
-           
-        }
+    }
 
     render() {
         if (this.state.loading === true) {
