@@ -45,7 +45,6 @@ class Question extends React.Component {
            
         }
 
-
     render() {
         if (this.state.loading === true) {
             return 'loading...';

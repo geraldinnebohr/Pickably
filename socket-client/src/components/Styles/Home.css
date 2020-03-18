@@ -53,13 +53,24 @@
 
 .home__button {
     width: 15%;
-    background: rgb(242,114,107);
-    background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
+    /* background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(93,9,121,1) 0%, rgba(255,0,129,1) 100%);  */
+    background-color: #000E57;
     float: right;
     margin-top: 1%;
     border-radius: 20px;
     font-size: 2vw;
     color: white;
+    cursor: pointer;
+}
+
+.home__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.home__button:active {
+    transform: translateY(4px);
 }
 
 .home__plus {
@@ -80,16 +91,66 @@
     grid-column-start: 2;
     grid-column-end: 3;
     display: grid;
-    grid-template-columns: 1fr 80% 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 80% 1fr;
 }
 
-.home__quiz__title {
-    grid-column-start: 2;
-    grid-column-end: 3;
+.home__quiz__box {
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: yellow;
+    font-size: 3.5vw;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(360deg, rgba(2,0,36,1) 0%, rgba(93,9,121,1) 0%, rgba(255,0,129,1) 100%); 
+}
+
+.button__home__play {
+    width: 7%;
+    margin: 10% 10% 0 5%;
+    float: left;
+    cursor: pointer;
+}
+
+.button__home__play:hover {
+    opacity: 0.5;
+}
+
+.button__home__play:active {
+    transform: translateY(4px);
+}
+
+.button__home__edit {
+    width: 6%;
+    margin: 10% 2% 0 55%;
+    cursor: pointer;
+}
+
+.button__home__edit:hover {
+    opacity: 0.5;
+}
+
+.button__home__edit:active {
+    transform: translateY(4px);
+}
+
+.button__home__delete {
+    width: 6%;
+    margin: 10% 2% 0 1%;
+    cursor: pointer;
+}
+
+.button__home__delete:hover {
+    opacity: 0.5;
+}
+
+.button__home__delete:active {
+    transform: translateY(4px);
 }
 
 .arrow__left {
@@ -112,5 +173,5 @@
 }
 
 .img__home {
-    width: 40%;
+    width: 30%;
 }
