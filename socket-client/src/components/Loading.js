@@ -22,7 +22,7 @@ class Loading extends React.Component {
         });
 
         socket.on('finishGame', (room) => {
-            window.location.href='./gameover';
+            window.location.href='./gameover?room=' + room;
         });
     }
 

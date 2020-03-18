@@ -66,7 +66,7 @@ class Question extends React.Component {
         } catch (error) {
             this.sendgameover(room);
 
-            window.location.href='./gameover';
+            window.location.href='./gameover?room=' + room;
             //this.setState({ loading: false, error: error });
         }
     }

@@ -6,9 +6,21 @@ const Room = require('../models/room.model');
 
 // Get room info
 router.route('/:id').get((req, res) => {
-    Room.findById(req.params.id)
-    .then(room => res.json(room))
-    .catch(err => res.status(400).json('Error: ' + err));
+  Room.findById(req.params.id)
+  .then(room => res.json(room))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// Get players sorted by score
+router.route('/:id/ranking').get((req, res) => {
+  Room.findById(req.params.id)
+  .then(room => {
+    const pList = room.players
+    const sList = pList.sort((a, b) => (a.score < b.score) ? 1 : -1)
+    //console.log(sList)
+    res.json(sList);
+  })
+  .catch(err => res.status(400).json('Error: ' + err));
 });
 
 // Add/Create a room
