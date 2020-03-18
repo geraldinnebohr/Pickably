@@ -17,7 +17,7 @@ class Question extends React.Component {
     };
 
     // sending sockets
-    send = (room) => {
+    sendplayerVotes = (room) => {
         socket.emit('playerVotes', { room: room, index: this.state.index });
         console.log('question/playerVotes >>>');
     }
@@ -36,23 +36,38 @@ class Question extends React.Component {
 
         this.fetchData();
         setTimeout(() => {
-            this.send(room);
+            this.sendplayerVotes(room);
             window.location.href='./answers?room=' + this.state.room + '&index=' + this.state.index;
         }, 5000)
-    }  
+    }
+    
+    sendgameover = (room) => {
+        fetch('http://localhost:5500/room/del/' + room, {
+            method: 'DELETE',
+        })
+        .then(res => res.text()) // or res.json()
+        .then(res => console.log(res))
+        socket.emit('gameover', room);
+        console.log('question/gameover >>>');
+    }
 
     fetchData = async () => {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const i = params.get('index');
         const room = params.get('room');
+
         this.setState({ loading: true, error: null, index: i, room: room });
         try {
             const response = await fetch("http://localhost:5500/room/" + room + "/question/" + i);
             const data = await response.json();
+
             this.setState({ loading: false, data: data });
         } catch (error) {
-            this.setState({ loading: false, error: error });
+            this.sendgameover(room);
+
+            window.location.href='./gameover';
+            //this.setState({ loading: false, error: error });
         }
     }
 

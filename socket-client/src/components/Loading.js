@@ -19,7 +19,11 @@ class Loading extends React.Component {
 
         socket.on('showButtons', (data) => {
             window.location.href='./game?index=' + data.index + '&room=' + data.room;
-        })
+        });
+
+        socket.on('finishGame', (room) => {
+            window.location.href='./gameover';
+        });
     }
 
     render() {

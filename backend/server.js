@@ -72,6 +72,11 @@ io.on('connection', socket => {
     io.sockets.in(data.room).emit('startLoading', data);
   })
 
+  socket.on('gameover', (room) => {
+    console.log('<<< gameover: ' + room);
+    io.sockets.in(room).emit('finishGame', room);
+  })
+
   // socket.on('disconnect', () => {
   //   console.log('user disconnected')
   // })
