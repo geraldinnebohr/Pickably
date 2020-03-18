@@ -1,6 +1,9 @@
 import React from 'react';
 import socketIOClient from "socket.io-client";
+
 import './Styles/Nickname.css';
+
+const socket = socketIOClient("localhost:5500");
 
 class Nickname extends React.Component {
     constructor() {
@@ -8,18 +11,30 @@ class Nickname extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // sending sockets
-    send = (un) => {
-        const socket = socketIOClient("localhost:5500");
-        socket.emit('add player', un);
-    }
-
-    handleSubmit(event) {
+    componentDidMount() {
         const search = window.location.search;
         const params = new URLSearchParams(search);
         const room = params.get('room');
 
+        //console.log(room)
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('room >>>')
+        });
+
+        socket.on('message', function(data) {
+            console.log('Incoming message:', data);
+            console.log('<<< message')
+         });
+    }
+
+    handleSubmit(event) {
         event.preventDefault();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+
         const data = new FormData(event.target);
 
         fetch("http://localhost:5500/room/" + room + "/player/add", {
@@ -31,10 +46,8 @@ class Nickname extends React.Component {
                 'Content-Type': 'application/json'
             }
         });
-        const pn = data.get('userName');
-        // console.log(pn);
-        this.send({playerName: pn, roomId: room});
-        window.location.href='./loading';
+        socket.emit('newPlayer', room);
+        window.location.href = '/loading';
     }
 
     render() {

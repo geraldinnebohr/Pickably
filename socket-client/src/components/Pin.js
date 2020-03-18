@@ -3,20 +3,39 @@ import socketIOClient from "socket.io-client";
 
 import './Styles/Pin.css';
 
+const socket = socketIOClient("localhost:5500");
+
 class Pin extends React.Component {
     state = {
-        loading: false,
+        loading: true,
         error: null,
-        data: [ ]
+        data: [ ],
+        room: null
     };
 
     componentDidMount() {
-        //this.fetchData();
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
 
-        const socket = socketIOClient("localhost:5500");
-        socket.on('addPlayer', (un) => {
-            this.fetchData();
-        })
+        //console.log(room)
+
+        socket.on('connect', function() {
+            socket.emit('room', room);
+            console.log('room >>>')
+        });
+
+        this.fetchData()
+    }
+
+    componentDidUpdate() {
+        const comp = this;
+
+        socket.on('updatePlayersList', function(room) {
+            console.log('<<< updatePlayersList');
+            comp.fetchData();
+        });
+
     }
 
     fetchData = async () => {
@@ -30,6 +49,7 @@ class Pin extends React.Component {
             const response = await fetch("http://localhost:5500/room/" + room);
             const data = await response.json();
             this.setState({ loading: false, data: data });
+            console.log(data)
         } catch (error) {
             this.setState({ loading: false, error: error });
         }
@@ -40,8 +60,10 @@ class Pin extends React.Component {
     }
 
     render() {
-        if (this.state.loading === true) {
-            return 'loading...';
+        if (this.state.loading === true) {            
+            return (
+                'loading'
+            )
         }
 
         if (this.state.error) {
