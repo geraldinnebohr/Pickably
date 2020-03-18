@@ -34,7 +34,6 @@
     width: 10%;
     border-radius: 25px;
     color: white;
-    height: 6%;
     background: rgb(242,114,107);
     background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
 }
