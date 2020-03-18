@@ -174,4 +174,13 @@
 
 .img__home {
     width: 30%;
+    cursor: pointer;
+}
+
+.img__home:hover {
+    opacity: 0.5;
+}
+
+.img__home:active {
+    transform: translateY(4px);
 }

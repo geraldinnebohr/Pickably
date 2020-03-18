@@ -9,7 +9,7 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
-class New extends React.Component {
+class Edit extends React.Component {
     render() {
         return (
             <div className="grid_container_dark">
@@ -65,4 +65,4 @@ class New extends React.Component {
     }
 }
 
-export default New;
+export default Edit;
