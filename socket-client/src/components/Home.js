@@ -69,6 +69,14 @@ class Home extends React.Component {
         // });
     }
 
+    handleClickQuestion = () => {
+        window.location.href='./new';
+    }
+
+    handleClickEdit = () => {
+        window.location.href='./edit';
+    }
+
     componentWillUnmount() {
         this.socket.off("hostCreateNewRoom");
     }
@@ -93,7 +101,7 @@ class Home extends React.Component {
                     <div className="home__text">
                         <div className="home__greeting">Hello Paul</div>
                         <div className="home__secondary">Welcome back! We have new features for you.</div>
-                        <button className="home__button">
+                        <button className="home__button" onClick={this.handleClickQuestion}>
                             <img src={Plus} alt="New quiz" className="home__plus"/>New
                         </button>
                     </div>

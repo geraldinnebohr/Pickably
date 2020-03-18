@@ -15,6 +15,8 @@ import SignUp from './SignUp';
 import LogIn from './Login';
 import Home from './Home';
 import New from './New';
+import Edit from './Edit';
+import GameOver from './GameOver';
 
 function App() {
     return (
@@ -34,6 +36,8 @@ function App() {
                     <Route exact path="/login" component={LogIn}/>
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/new" component={New}/>
+                    <Route exact path="/edit" component={Edit}/>
+                    <Route exact path="/gameover" component={GameOver}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
