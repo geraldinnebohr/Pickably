@@ -57,7 +57,7 @@ class Home extends React.Component {
     }
 
     handleClickDelete = () => {
-        fetch("http://localhost:5500/questionaries/del/5e6d50976fa1042c336da373", {
+        fetch("http://localhost:5500/questionary/del/5e6d50976fa1042c336da373", {
             method: 'DELETE'
         })
         .then((response) => {

@@ -10,14 +10,12 @@ import Nickname from './Nickname';
 import Pin from './Pin';
 import Question from './Question';
 import Loading from './Loading';
-import Pruebas from './pruebas';
 import SignUp from './SignUp';
 import LogIn from './Login';
 import Home from './Home';
 import New from './New';
 import Edit from './Edit';
 import GameOver from './GameOver';
-import GameOverPlayer from './GameOverPlayer';
 
 function App() {
     return (
@@ -32,14 +30,12 @@ function App() {
                     <Route exact path="/pin" component={Pin}/>
                     <Route exact path="/question" component={Question}/>
                     <Route exact path="/loading" component={Loading}/>
-                    <Route exact path="/pruebas" component={Pruebas}/>
                     <Route exact path="/signup" component={SignUp}/>
                     <Route exact path="/login" component={LogIn}/>
                     <Route exact path="/home" component={Home}/>
                     <Route exact path="/new" component={New}/>
                     <Route exact path="/edit" component={Edit}/>
                     <Route exact path="/gameover" component={GameOver}/>
-                    <Route exact path="/gameoverplayer" component={GameOverPlayer}/>
                 </Switch>
             {/* </Layout> */}
         </BrowserRouter>
