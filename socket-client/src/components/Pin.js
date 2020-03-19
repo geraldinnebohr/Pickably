@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 
 import './Styles/Pin.css';
 
-const socket = socketIOClient("localhost:5500");
+const socket = socketIOClient("https://pickably.herokuapp.com");
 
 class Pin extends React.Component {
     state = {
@@ -46,7 +46,7 @@ class Pin extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("http://localhost:5500/room/" + room);
+            const response = await fetch("https://pickably.herokuapp.com/room/" + room);
             const data = await response.json();
             this.setState({ loading: false, data: data });
             console.log(data)

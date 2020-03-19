@@ -20,7 +20,7 @@ class SignUp extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        fetch("http://localhost:5500/user/signup", {
+        fetch("https://pickably.herokuapp.com/user/signup", {
             method: 'POST',
             body: JSON.stringify({
                 username: data.get('userName'),

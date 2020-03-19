@@ -16,7 +16,7 @@ class LogIn extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        fetch("http://localhost:5500/user/login", {
+        fetch("https://pickably.herokuapp.com/user/login", {
             method: 'POST',
             body: JSON.stringify({
                 username: data.get('userName'),

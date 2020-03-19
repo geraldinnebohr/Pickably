@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 
 import './Styles/Nickname.css';
 
-const socket = socketIOClient("localhost:5500");
+const socket = socketIOClient("https://pickably.herokuapp.com");
 
 class Nickname extends React.Component {
     constructor() {
@@ -38,7 +38,7 @@ class Nickname extends React.Component {
         const data = new FormData(event.target);
         const userName = data.get('userName');
 
-        fetch("http://localhost:5500/room/" + room + "/player/add", {
+        fetch("https://pickably.herokuapp.com/room/" + room + "/player/add", {
             method: 'POST',
             body: JSON.stringify({
                 userName: userName

@@ -4,7 +4,7 @@ import socketIOClient from "socket.io-client";
 import './Styles/Loading.css'
 import Gif from '../images/loader.gif';
 
-const socket = socketIOClient("localhost:5500");
+const socket = socketIOClient("https://pickably.herokuapp.com");
 
 class Loading extends React.Component {
     componentDidMount() {

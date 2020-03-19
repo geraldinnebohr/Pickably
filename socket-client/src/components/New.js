@@ -20,7 +20,7 @@ class New extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch("http://localhost:5500/questionary/add", {
+        fetch("https://pickably.herokuapp.com/questionary/add", {
             method: 'POST',
             body: JSON.stringify({
                 description: data.get('description'),
