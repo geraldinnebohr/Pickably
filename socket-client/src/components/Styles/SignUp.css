@@ -1,0 +1,98 @@
+.child__content__signup {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    border-radius: 35px;
+    overflow: hidden;
+    background-color: white;
+    /* empieza como padre aquí */
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    grid-template-rows: 1fr;
+}
+
+.content__signup__left {
+    background-color: white;
+    color: rgba(238,59,150,1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3vw;
+}
+
+.content__signup__right {
+    background: rgb(242,114,107);
+    background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
+    color: white;
+    text-align: center;
+    /* para centrar verticalmente */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 2.5vw;
+}
+
+.social__buttons {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 2vw;
+}
+
+.signup__social {
+    border-radius: 50%;
+    text-align: center;
+    margin: 0px 30px;
+
+}
+
+.signup__title {
+    font-size: 4vw;
+    color: rgb(255, 0, 119);
+    margin-bottom: 3%;
+}
+
+.signup__button__sign {
+    width: 30%;
+    background-color: rgb(255, 0, 119);
+    color: white;
+    border-radius: 20px;
+    margin: 3% 36% 5% 36%;
+}
+
+.signup__input {
+    border-style: none;
+    background-color: #ece9e9;
+    border-radius: 7px;
+    margin-bottom: 2%;
+    color: rgba(1,183,184,1);
+    width: 60%;
+}
+
+.signup__input ::placeholder {
+    color: rgba(1,183,184,1);
+    opacity: 1;
+    margin-left: 5px;
+}
+
+.title__login__right {
+    font-size: 3vw;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+.login__left__sign {
+    background: rgb(242,114,107);
+    background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%);
+    color: white;
+    font-size: 1.8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}

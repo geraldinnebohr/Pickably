@@ -1,0 +1,158 @@
+.grid__container {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    width: 100vw;
+    height: 100vh;
+    /* body elements */
+    background-color: #000E57;
+    color: white;
+    font-size: 1.5vw;
+    font-family: 'Alata';
+}
+
+.child__content__results {
+    /* grid-column: inicio / fin; */
+    /* grid-column: 1 / -1 para que ocupe todos los espacios de una misma fila siempre */
+    /* grid-column: 1 / span 2 para que me ocupe 2 espacios; */
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    border-radius: 35px;
+    overflow: hidden;
+    background-color: white;
+    /* empieza como padre aquí */
+    display: grid;
+    grid-template-columns: 1fr 50% 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.content__left__results {
+    /* background: rgb(242,114,107);
+    background: linear-gradient(180deg, rgba(242,114,107,1) 0%, rgba(238,59,150,1) 39%, rgba(107,61,151,1) 77%); */
+    color: white;
+    text-align: center;
+    /* para centrar verticalmente */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: 2.5vw;
+}
+
+.content__container__results {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    color: black;
+    gap: 20px;
+    font-size: 2vw;
+}
+
+.content__answer {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    color: #01B7B8;
+    margin-left: 5%;
+}
+
+.content__circle {
+    background: rgb(15,245,59);
+    background: linear-gradient(135deg, rgba(15,245,59,1) 0%, rgba(13,98,230,1) 100%, rgba(0,212,255,1) 100%); 
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.content__triangle {
+    background: rgb(242,114,107);
+    background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(237,15,119,1) 0%, rgba(80,58,215,1) 99%);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.content__square {
+    background: rgb(242,114,107);
+    background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(255,220,60,1) 0%, rgba(255,45,89,1) 99%);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.content__ex {
+    background: rgb(242,114,107);
+    background: linear-gradient(135deg, rgba(242,114,107,1) 0%, rgba(0,255,255,1) 0%, rgba(147,39,143,1) 99%);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.res__icons {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 17%;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.button__results {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    width: 70%;
+    border-radius: 25px;
+    color: white;
+    height: 10%;
+    background-color: #01B7B8;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    margin-top: 80%;
+    /* background: rgb(242,114,107);
+    background: linear-gradient(90deg, rgba(242,114,107,1) 0%, rgba(0,248,170,1) 0%, rgba(1,183,184,1) 50%, rgba(66,70,153,1) 100%); */
+}
+
+.title__results {
+    grid-column-start: 1;
+    grid-column-end: 3; 
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    color: #000E57;
+}
+
+.ans__description {
+    color: #000E57;
+}

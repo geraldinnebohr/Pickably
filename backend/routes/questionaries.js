@@ -57,6 +57,13 @@ router.route('/:id/questions').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// Get question by index
+router.route('/:id/question/:index').get((req, res) => {
+  Questionary.findById(req.params.id)
+    .then(questionary => res.json(questionary.questions[req.params.index]))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 // Add a question to a questionary
 router.route('/:id/question/add').post((req, res) => {
   Questionary.findById(req.params.id)
