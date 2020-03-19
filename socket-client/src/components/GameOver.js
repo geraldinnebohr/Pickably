@@ -14,18 +14,31 @@ class GameOver extends React.Component {
     }
 
     fetchData = async () => {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("http://localhost:5500/room/A9mSyD9zG/ranking");
+            const response = await fetch("http://localhost:5500/room/" + room + "/ranking");
             const data = await response.json();
             this.setState({ loading: false, data: data });
+            console.log(this.state.data);
         } catch(error) {
             this.setState({ loading: false, error: error });
         }
     }
 
     handleClick = () => {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
+        
+        fetch('http://localhost:5500/room/del/' + room, {
+            method: 'DELETE',
+        })
+        .then(res => res.text())     // or res.json()
+        .then(res => console.log(res))
         window.location.href='./home'
     }
 

@@ -14,10 +14,13 @@ class GameOverPlayer extends React.Component {
     }
 
     fetchData = async () => {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const room = params.get('room');
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("http://localhost:5500/room/A9mSyD9zG/ranking");
+            const response = await fetch("http://localhost:5500/room/" + room + "/ranking");
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch(error) {

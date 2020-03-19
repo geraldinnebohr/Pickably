@@ -44,11 +44,6 @@ class Question extends React.Component {
     sendgameover = (room) => {
         socket.emit('gameover', room);
         console.log('question/gameover >>>');
-        fetch('http://localhost:5500/room/del/' + room, {
-            method: 'DELETE',
-        })
-        .then(res => res.text())     // or res.json()
-        .then(res => console.log(res))
     }
 
     fetchData = async () => {
