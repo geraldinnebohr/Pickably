@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd socket-client && npm install && npm start"
+    "start": "node server.js",
+    "heroku-postbuild": "cd socket-client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,5 @@
   },
   "engines": {
     "node": "12.16.x"
-  },
-  "proxy": "http://localhost:5500"
+  }
 }

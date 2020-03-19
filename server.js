@@ -76,39 +76,18 @@ io.on('connection', socket => {
     console.log('<<< gameover: ' + room);
     io.sockets.in(room).emit('finishGame', room);
   })
-
-  // socket.on('disconnect', () => {
-  //   console.log('user disconnected')
-  // })
 })
 
+// ... other imports 
+const path = require("path")
 
-//   console.log('BIG SOCKET');
-//   pickably.initGame(io, socket);
-// })
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
-
-  //   console.log('New client connected')
-  
-//   socket.on('add player', (un) => {
-//     console.log('Player added');
-//     io.sockets.emit('add player', un);
-//   })
-
-//   socket.on('time to vote', (i) => {
-//     console.log('Time to vote');
-//     io.sockets.emit('time to vote', i);
-//   })
-
-//   socket.on('question results', (i) => {
-//     console.log('Question results');
-//     io.sockets.emit('question results', i++);
-//   })
-  
-//   // disconnect is fired when a client leaves the server
-//   socket.on('disconnect', () => {
-//     console.log('user disconnected')
-//   })
-// })
+// ...
+// Right before your app.listen(), add this:
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
