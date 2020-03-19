@@ -82,12 +82,12 @@ io.on('connection', socket => {
 const path = require("path")
 
 // ... other app.use middleware 
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.join(__dirname, "socket-client", "build")))
 
 // ...
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
