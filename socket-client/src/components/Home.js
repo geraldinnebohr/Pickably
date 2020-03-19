@@ -17,7 +17,7 @@ class Home extends React.Component {
     constructor() {
         super();
         this.state = {
-          endpoint: 'http://localhost:5500',
+          endpoint: 'https://pickably.herokuapp.com',
           loading: true,
           error: null,
           data: [ ]
@@ -33,7 +33,7 @@ class Home extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("http://localhost:5500/questionary/");
+            const response = await fetch("https://pickably.herokuapp.com/questionary");
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {
@@ -42,7 +42,7 @@ class Home extends React.Component {
     }
 
     handleClickPlay = () => {
-        fetch("http://localhost:5500/room/new/5e6d50976fa1042c336da373", {
+        fetch("https://pickably.herokuapp.com/room/new/5e6d50976fa1042c336da373", {
             method: 'POST'
         })
         .then((response) => {
@@ -57,7 +57,7 @@ class Home extends React.Component {
     }
 
     handleClickDelete = () => {
-        fetch("http://localhost:5500/questionary/del/5e6d50976fa1042c336da373", {
+        fetch("https://pickably.herokuapp.com/questionary/del/5e6d50976fa1042c336da373", {
             method: 'DELETE'
         })
         .then((response) => {
