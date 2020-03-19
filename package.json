@@ -29,5 +29,6 @@
   },
   "engines": {
     "node": "12.16.x"
-  }
+  },
+  "proxy": "http://localhost:5500"
 }
