@@ -9,5 +9,13 @@ router.route('').get((req, res) => {
   res.redirect('/home')
 });
 
+router.route('/login').get((req, res) => {
+  res.redirect('/login')
+});
+
+router.route('/signup').get((req, res) => {
+  res.redirect('/signup')
+});
+
 // Export routes
 module.exports = router;
