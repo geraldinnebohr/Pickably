@@ -32,13 +32,12 @@ connection.once('open', () => {
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
-
-//const creatorRouter = require('./routes/creators');
+const userRouter = require('./routes/user');
 
 app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
-//app.use('/creator', creatorRouter);
+app.use('/', userRouter);
 
 // our server instance
 const server = http.createServer(app)
