@@ -18,7 +18,7 @@ router.route('/signup').post( async (req, res) => {
       email,
       password
   });
-  console.log(newUser)
+  //console.log(newUser)
   newUser.save()
   .then(() => res.json('New user created!'))
   .catch(err => res.status(400).json('Error: ' + err));

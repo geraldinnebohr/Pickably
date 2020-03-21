@@ -19,13 +19,20 @@ class SignUp extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
+        
+        const name = data.get('userName');
+        const email = data.get('email');
+        const password = data.get('pwd');
 
+        if (!name || !email || !password) {
+            alert('Missing information')
+        }
         fetch("https://pickably.herokuapp.com/user/signup", {
             method: 'POST',
             body: JSON.stringify({
-                name: data.get('userName'),
-                email: data.get('email'),
-                password: data.get('pwd')
+                name: name,
+                email: email,
+                password: password
             }),
             headers:{
                 'Content-Type': 'application/json'
@@ -34,12 +41,12 @@ class SignUp extends React.Component {
         .then((response) => response.json())
         .then((data) => {
         console.log('Success:', data);
+        window.location.href='./login';
         })
         .catch((error) => {
         console.error('Error:', error);
+        window.location.href='./signup'
         });
-        // .then(window.location.href='./login')
-        // .catch(window.location.href='./signup')
     }
 
     render() {
