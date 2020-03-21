@@ -31,8 +31,15 @@ class SignUp extends React.Component {
                 'Content-Type': 'application/json'
             }
         })
-        .then(window.location.href='./login')
-        .catch(window.location.href='./signup')
+        .then((response) => response.json())
+        .then((data) => {
+        console.log('Success:', data);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+        // .then(window.location.href='./login')
+        // .catch(window.location.href='./signup')
     }
 
     render() {
