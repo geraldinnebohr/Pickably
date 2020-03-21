@@ -4,9 +4,9 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 
 
-router.route('').get((req, res) => {
-  res.redirect('/home')
-});
+// router.route('').get((req, res) => {
+//   res.redirect('/home')
+// });
 
 router.route('/signup').post( async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password,10)
@@ -19,8 +19,8 @@ router.route('/signup').post( async (req, res) => {
       password
   });
   newUser.save()
-  .then(() => res.redirect('/login'))
-  .catch(() => res.redirect('/signup'));
+  .then(() => res.json('New user created!'))
+  .catch(err => res.status(400).json('Error: ' + err));
   console.log(newUser)
 });
 

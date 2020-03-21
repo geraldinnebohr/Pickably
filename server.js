@@ -37,7 +37,7 @@ const userRouter = require('./routes/user');
 app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
-app.use('/', userRouter);
+app.use('/user', userRouter);
 
 // our server instance
 const server = http.createServer(app)

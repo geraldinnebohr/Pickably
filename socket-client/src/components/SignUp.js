@@ -20,7 +20,7 @@ class SignUp extends React.Component {
         event.preventDefault();
         const data = new FormData(event.target);
 
-        fetch("https://pickably.herokuapp.com/signup", {
+        fetch("https://pickably.herokuapp.com/user/signup", {
             method: 'POST',
             body: JSON.stringify({
                 name: data.get('userName'),
@@ -31,7 +31,7 @@ class SignUp extends React.Component {
                 'Content-Type': 'application/json'
             }
         });
-        //window.location.href='./login'
+        window.location.href='./login'
     }
 
     render() {
