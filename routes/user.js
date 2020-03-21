@@ -1,20 +1,27 @@
 const router = require('express').Router();
-const Questionary = require('../models/questionary.model');
-const Room = require('../models/room.model');
+const User = require('../models/user.model');
 
-// ---------- ROOM ---------- //
+const bcrypt = require('bcrypt');
 
-// Get room info
+
 router.route('').get((req, res) => {
   res.redirect('/home')
 });
 
-router.route('/login').get((req, res) => {
-  res.redirect('/login')
-});
-
-router.route('/signup').get((req, res) => {
-  res.redirect('/signup')
+router.route('/signup').post( async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password,10)
+  const user = req.body.user;
+  const email = req.body.email;
+  const password = hashedPassword;
+  const newUser = new User({
+      user,
+      email,
+      password
+  });
+  newUser.save()
+  .then(() => res.redirect('/login'))
+  .catch(() => res.redirect('/signup'));
+  console.log(newUser)
 });
 
 // Export routes
