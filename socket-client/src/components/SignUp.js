@@ -45,7 +45,7 @@ class SignUp extends React.Component {
             .catch((error) => {
             console.error('Error:', error);
             });
-        window.location.href='./login';
+        //window.location.href='./login';
         }
     }
 
