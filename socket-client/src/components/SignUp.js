@@ -26,27 +26,27 @@ class SignUp extends React.Component {
 
         if (!name || !email || !password) {
             alert('Missing information')
-        }
-        fetch("https://pickably.herokuapp.com/user/signup", {
-            method: 'POST',
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            }),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => response.json())
-        .then((data) => {
-        console.log('Success:', data);
+        } else {
+            fetch("https://pickably.herokuapp.com/user/signup", {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                }),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+            console.log('Success:', data);
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
         window.location.href='./login';
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        window.location.href='./signup'
-        });
+        }
     }
 
     render() {
