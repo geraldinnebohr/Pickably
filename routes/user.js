@@ -9,19 +9,19 @@ const bcrypt = require('bcrypt');
 // });
 
 router.route('/signup').post( async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password,10)
-  const user = req.body.user;
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  const name = req.body.name;
   const email = req.body.email;
   const password = hashedPassword;
   const newUser = new User({
-      user,
+      name,
       email,
       password
   });
+  console.log(newUser)
   newUser.save()
   .then(() => res.json('New user created!'))
   .catch(err => res.status(400).json('Error: ' + err));
-  console.log(newUser)
 });
 
 // Export routes
