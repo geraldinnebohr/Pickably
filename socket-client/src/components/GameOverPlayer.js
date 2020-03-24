@@ -20,7 +20,7 @@ class GameOverPlayer extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + room + "/ranking");
+            const response = await fetch(process.env.URL + "/room/" + room + "/ranking");
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch(error) {

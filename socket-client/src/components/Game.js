@@ -7,13 +7,13 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
-const socket = socketIOClient("https://pickably.herokuapp.com");
+const socket = socketIOClient(process.env.URL);
 
 class Game extends React.Component {
     state = {
         loading: true,
         error: null,
-        endpoint: "https://pickably.herokuapp.com",
+        endpoint: process.env.URL,
         updated: null,
     };
 
@@ -51,7 +51,7 @@ class Game extends React.Component {
         this.setState({ loading: true, error: null });
     
         try {
-            fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i + "/answer/0/player/" + name , {
+            fetch(process.env.URL + "/room/" + room + "/question/" + i + "/answer/0/player/" + name , {
                 method: 'PUT',
                 body: JSON.stringify(this.state.data),
                 headers:{
@@ -78,7 +78,7 @@ class Game extends React.Component {
         this.setState({ loading: true, error: null });
     
         try {
-            fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i + "/answer/1/player/" + name, {
+            fetch(process.env.URL + "/room/" + room + "/question/" + i + "/answer/1/player/" + name, {
                 method: 'PUT',
                 body: JSON.stringify(this.state.data),
                 headers:{
@@ -105,7 +105,7 @@ class Game extends React.Component {
         this.setState({ loading: true, error: null });
     
         try {
-            fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i + "/answer/2/player/" + name, {
+            fetch(process.env.URL + "/room/" + room + "/question/" + i + "/answer/2/player/" + name, {
                 method: 'PUT',
                 body: JSON.stringify(this.state.data),
                 headers:{
@@ -132,7 +132,7 @@ class Game extends React.Component {
         this.setState({ loading: true, error: null });
     
         try {
-            fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i + "/answer/3/player/" + name, {
+            fetch(process.env.URL + "/room/" + room + "/question/" + i + "/answer/3/player/" + name, {
                 method: 'PUT',
                 body: JSON.stringify(this.state.data),
                 headers:{

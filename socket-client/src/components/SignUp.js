@@ -27,7 +27,7 @@ class SignUp extends React.Component {
         if (!name || !email || !password) {
             alert('Missing information')
         } else {
-            fetch("https://pickably.herokuapp.com/signup", {
+            fetch(process.env.URL + "/signup", {
                 method: 'POST',
                 body: JSON.stringify({
                     name: name,
@@ -63,8 +63,8 @@ class SignUp extends React.Component {
                         <div className="login__text">or use your email for registration:</div>
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" placeholder="Name" className="signup__input" id="userName" name="userName"/>
-                            <input type="text" placeholder="Email" className="signup__input" id="email" name="email"/>
-                            <input type="text" placeholder="Password" className="signup__input" id="pwd" name="pwd"/>
+                            <input type="email" placeholder="Email" className="signup__input" id="email" name="email"/>
+                            <input type="password" placeholder="Password" className="signup__input" id="pwd" name="pwd"/>
                             <button className="signup__button__sign">SIGN UP</button>
                         </form>
                     </div>

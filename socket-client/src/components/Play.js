@@ -25,10 +25,10 @@ class Play extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + this.state.value);
+            const response = await fetch(process.env.URL + "/room/" + this.state.value);
             const data = await response.json();
             this.setState({ loading: false, data: data });
-            console.log("https://pickably.herokuapp.com/room/" + this.state.value)
+            console.log(process.env.URL + "/room/" + this.state.value)
             if (this.state.data === null) {
                 alert('NO Existe el pin: ' + this.state.value);
             } else {

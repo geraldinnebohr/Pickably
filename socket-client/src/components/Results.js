@@ -14,7 +14,7 @@ class Results extends React.Component {
         index: null,
         room: null,
         data: [ ],
-        endpoint: "https://pickably.herokuapp.com",
+        endpoint: process.env.URL,
     };
 
     componentDidMount() {
@@ -30,7 +30,7 @@ class Results extends React.Component {
         this.setState({ loading: true, error: null, index: i, room: room });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i);
+            const response = await fetch(process.env.URL + "/room/" + room + "/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {

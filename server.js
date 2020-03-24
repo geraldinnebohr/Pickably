@@ -63,8 +63,13 @@ initializePassport(
   passport,
   email => {
     User.findOne({email: email}, function (err, myUser) {
-      if (!err) return myUser;
-      else return null;
+      if (!err) {
+        console.log(myUser)
+        return myUser;
+      }
+      else {
+        return null;
+      }
     })
   },
   id => {
