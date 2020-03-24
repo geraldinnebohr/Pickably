@@ -61,10 +61,11 @@ class SignUp extends React.Component {
                             <img className="social__icons__auth" src={Facebook} alt="Facebook Button"/>
                         </div>
                         <div className="login__text">or use your email for registration:</div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" placeholder="Name" className="signup__input" id="userName" name="userName"/>
+                        {/* <form onSubmit={this.handleSubmit}> */}
+                        <form method="POST" action="/signup">
+                            <input type="text" placeholder="Name" className="signup__input" id="username" name="username"/>
                             <input type="email" placeholder="Email" className="signup__input" id="email" name="email"/>
-                            <input type="password" placeholder="Password" className="signup__input" id="pwd" name="pwd"/>
+                            <input type="password" placeholder="Password" className="signup__input" id="password" name="password"/>
                             <button className="signup__button__sign">SIGN UP</button>
                         </form>
                     </div>

@@ -8,8 +8,8 @@ const User = require('./models/user.model');
 const passport = require('passport');
 const LocalStrategy = require("passport-local");
 //const initializePassport = require('./passport-config');
-const bcrypt = require('bcrypt');
-
+//const bcrypt = require('bcrypt');
+const bodyParser = require("body-parser");
 // manage APIs with express
 const cors = require('cors');
 // allows connection with our database
@@ -28,18 +28,22 @@ app.use(cors());
 app.use(express.json());
 
 // auth
-app.use(flash());
+//app.use(flash());
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }))
 
-app.use(passport.initialize())
-app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(bodyParser.urlencoded({extended:true}));
+
 //app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
@@ -84,28 +88,34 @@ app.use('/poll', pollRouter);
 //     .catch(err => {return null});
 //   }
 // )
+app.post('/signup', (req, res) => {
+  //const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  const name = req.body.name;
+  const email = req.body.email;
+  //const password = hashedPassword;
+  User.register(new User({
+      name,
+      email
+  }),
+  req.body.password, function(err, user){
+    if(err){            
+         console.log(err);            
+         return res.redirect('/signup');        
+    }
+    passport.authenticate("local")(req, res, function(){
+      res.redirect("/home");       
+    });     
+  });
+});
 
+
+  
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
   failureRedirect: '/login',
   failureFlash: true
 }))
 
-app.post('/signup', async (req, res) => {
-  const hashedPassword = await bcrypt.hash(req.body.password, 10)
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = hashedPassword;
-  const newUser = new User({
-      name,
-      email,
-      password
-  });
-  //console.log(newUser)
-  newUser.save()
-  .then(() => res.json('New user created!'))
-  .catch(err => res.status(400).json('Error: ' + err));
-});
 
 // our server instance
 const server = http.createServer(app)
