@@ -6,6 +6,7 @@ const session = require('express-session');
 
 const User = require('./models/user.model');
 const passport = require('passport');
+const LocalStrategy = require("passport-local");
 //const initializePassport = require('./passport-config');
 const bcrypt = require('bcrypt');
 
