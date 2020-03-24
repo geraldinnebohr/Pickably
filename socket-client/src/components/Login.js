@@ -12,20 +12,20 @@ class LogIn extends React.Component {
         window.location.href='./signup';
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const data = new FormData(event.target);
 
-        fetch(process.env.URL + "/login", {
-            method: 'POST',
-            body: JSON.stringify({
-                email: data.get('email'),
-                password: data.get('pwd')
-            }),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
+    //     fetch(process.env.URL + "/login", {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+    //             email: data.get('email'),
+    //             password: data.get('pwd')
+    //         }),
+    //         headers:{
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
         // .then((response) => {
         //     return response.json();
         //   })
@@ -35,7 +35,7 @@ class LogIn extends React.Component {
         //         window.location.href='./home' 
         //     }
         // });
-    }
+   // }
 
     render() {
         return (

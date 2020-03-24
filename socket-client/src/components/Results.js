@@ -7,6 +7,9 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
 class Results extends React.Component {
     state = {
         loading: true,
@@ -14,7 +17,7 @@ class Results extends React.Component {
         index: null,
         room: null,
         data: [ ],
-        endpoint: process.env.URL,
+        endpoint: urlServer,
     };
 
     componentDidMount() {
@@ -30,7 +33,7 @@ class Results extends React.Component {
         this.setState({ loading: true, error: null, index: i, room: room });
 
         try {
-            const response = await fetch(process.env.URL + "/room/" + room + "/question/" + i);
+            const response = await fetch(urlServer + "/room/" + room + "/question/" + i);
             const data = await response.json();
             this.setState({ loading: false, data: data });
         } catch (error) {

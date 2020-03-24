@@ -11,13 +11,15 @@ import Play from "../images/play.svg";
 import Edit from "../images/edit.svg";
 import Bin from "../images/bin.svg";
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
 
 class Home extends React.Component {
 
     constructor() {
         super();
         this.state = {
-          endpoint: process.env.URL,
+          endpoint: urlServer,
           loading: true,
           error: null,
           data: [ ]
@@ -33,8 +35,9 @@ class Home extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch(process.env.URL + "/questionary");
+            const response = await fetch(urlServer + "/questionary");
             const data = await response.json();
+            console.log(data)
             this.setState({ loading: false, data: data });
         } catch (error) {
             this.setState({ loading: false, error: error });
@@ -42,7 +45,7 @@ class Home extends React.Component {
     }
 
     handleClickPlay = () => {
-        fetch(process.env.URL + "/room/new/5e6d50976fa1042c336da373", {
+        fetch(process.env.URL + "/room/new/5e7a0a15a6056f337edb641a", {
             method: 'POST'
         })
         .then((response) => {
@@ -57,7 +60,7 @@ class Home extends React.Component {
     }
 
     handleClickDelete = () => {
-        fetch(process.env.URL + "/questionary/del/5e6d50976fa1042c336da373", {
+        fetch(process.env.URL + "/questionary/del/5e7a0a15a6056f337edb641a", {
             method: 'DELETE'
         })
         .then((response) => {

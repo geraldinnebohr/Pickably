@@ -73,7 +73,7 @@ app.post('/signup', function(req, res) {
     }
     else { 
       //res.json({success: true, message: "Your account has been saved"})
-      res.redirect('/home');
+      res.redirect('/login');
     } 
     // passport.authenticate("local")(req, res, function(){
     //   res.redirect("/home");       

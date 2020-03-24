@@ -7,7 +7,10 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
-const socket = socketIOClient("https://pickably.herokuapp.com");
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
+const socket = socketIOClient(urlServer);
 
 class AnswerPerQuestion extends React.Component {
     state = {
@@ -52,7 +55,7 @@ class AnswerPerQuestion extends React.Component {
         this.setState({ loading: true, error: null, index: i, room: room });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + room + "/question/" + i);
+            const response = await fetch(urlServer + "/room/" + room + "/question/" + i);
             const data = await response.json();
             
             this.setState({ loading: false, data: data });

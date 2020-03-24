@@ -3,6 +3,9 @@ import React from 'react';
 import "./Styles/Play.css";
 import Logo from "../images/PICKABLY.png"
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
 class Play extends React.Component {
     constructor(props) {
         super(props);
@@ -25,10 +28,10 @@ class Play extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch(process.env.URL + "/room/" + this.state.value);
+            const response = await fetch(urlServer + "/room/" + this.state.value);
             const data = await response.json();
             this.setState({ loading: false, data: data });
-            console.log(process.env.URL + "/room/" + this.state.value)
+            console.log(urlServer + "/room/" + this.state.value)
             if (this.state.data === null) {
                 alert('NO Existe el pin: ' + this.state.value);
             } else {

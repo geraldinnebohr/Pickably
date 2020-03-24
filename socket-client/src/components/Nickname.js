@@ -3,7 +3,10 @@ import socketIOClient from "socket.io-client";
 
 import './Styles/Nickname.css';
 
-const socket = socketIOClient(process.env.URL);
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
+const socket = socketIOClient(urlServer);
 
 class Nickname extends React.Component {
     constructor() {
