@@ -1,6 +1,13 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const flash = require('express-flash');
+const session = require('express-session');
+
+const User = require('../models/user.model');
+const passport = require('passport');
+const initializePassport = require('./passport-config');
+const bcrypt = require('bcrypt');
 
 // manage APIs with express
 const cors = require('cors');
@@ -18,6 +25,17 @@ const app = express();
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
 app.use(express.json());
+
+// auth
+app.use(flash());
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
 const uri = process.env.ATLAS_URI;
@@ -38,6 +56,45 @@ app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 app.use('/user', userRouter);
+
+
+// ----------- auth routes -------------
+initializePassport(
+  passport,
+  email => {
+    User.findOne({email: email}, function (err, myUser) {
+      if (!err) return myUser;
+      else return null;
+    })
+  },
+  id => {
+    User.findById(id)
+    .then(myUser => {return myUser})
+    .catch(err => {return null});
+  }
+)
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+
+app.post('/signup', async (req, res) => {
+  const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = hashedPassword;
+  const newUser = new User({
+      name,
+      email,
+      password
+  });
+  //console.log(newUser)
+  newUser.save()
+  .then(() => res.json('New user created!'))
+  .catch(err => res.status(400).json('Error: ' + err));
+});
 
 // our server instance
 const server = http.createServer(app)

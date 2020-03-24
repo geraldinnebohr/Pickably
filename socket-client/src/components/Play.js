@@ -44,6 +44,10 @@ class Play extends React.Component {
         this.setState({value: event.target.value});
     }
 
+    handleClick = () => {
+        window.location.href='./signup'
+    }
+
     render() {
         return (
             <div className="play__container">
@@ -56,7 +60,7 @@ class Play extends React.Component {
 
                 <div className="game__container">
                     or create a pickably game:
-                    <button className="create__game">CREATE</button>
+                    <button className="create__game" onClick={this.handleClick}>CREATE</button>
                 </div>
             </div>
         )
