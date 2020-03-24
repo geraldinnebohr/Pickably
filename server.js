@@ -4,7 +4,7 @@ const socketIO = require('socket.io');
 const flash = require('express-flash');
 const session = require('express-session');
 
-const User = require('../models/user.model');
+const User = require('./models/user.model');
 const passport = require('passport');
 const initializePassport = require('./passport-config');
 const bcrypt = require('bcrypt');
@@ -35,7 +35,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(methodOverride('_method'))
+//app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
 const uri = process.env.ATLAS_URI;
@@ -50,12 +50,12 @@ connection.once('open', () => {
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')
-const userRouter = require('./routes/user');
+//const userRouter = require('./routes/user');
 
 app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
-app.use('/user', userRouter);
+//app.use('/user', userRouter);
 
 
 // ----------- auth routes -------------
