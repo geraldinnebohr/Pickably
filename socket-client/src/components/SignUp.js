@@ -27,7 +27,7 @@ class SignUp extends React.Component {
         if (!name || !email || !password) {
             alert('Missing information')
         } else {
-            fetch("https://pickably.herokuapp.com/user/signup", {
+            fetch("https://pickably.herokuapp.com/signup", {
                 method: 'POST',
                 body: JSON.stringify({
                     name: name,
