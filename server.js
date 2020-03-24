@@ -7,6 +7,7 @@ const session = require('express-session');
 const User = require('./models/user.model');
 const passport = require('passport');
 const LocalStrategy = require("passport-local");
+const passportLocalMongoose = require("passport-local-mongoose");
 //const initializePassport = require('./passport-config');
 //const bcrypt = require('bcrypt');
 const bodyParser = require("body-parser");
@@ -30,20 +31,6 @@ app.use(express.json());
 // auth
 //app.use(flash());
 
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
-
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-app.use(bodyParser.urlencoded({extended:true}));
-
 //app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
@@ -55,6 +42,51 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
+
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.post('/signup', function(req, res) {
+  //const hashedPassword = await bcrypt.hash(req.body.password, 10)
+  //const password = hashedPassword;
+  User.register(new User({
+      name: req.body.name,
+      email: req.body.email
+  }),
+  req.body.password,
+  function(err, user){
+    if(err){            
+         console.log(err);            
+         res.redirect('/signup');        
+    }
+    passport.authenticate("local")(req, res, function(){
+      res.redirect("/home");       
+    });     
+  });
+});
+
+
+  
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  //failureFlash: true
+}), function(req, res){
+  res.send("User is "+ req.user.id);
+});
+
 
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
@@ -88,34 +120,6 @@ app.use('/poll', pollRouter);
 //     .catch(err => {return null});
 //   }
 // )
-app.post('/signup', (req, res) => {
-  //const hashedPassword = await bcrypt.hash(req.body.password, 10)
-  const name = req.body.name;
-  const email = req.body.email;
-  //const password = hashedPassword;
-  User.register(new User({
-      name,
-      email
-  }),
-  req.body.password, function(err, user){
-    if(err){            
-         console.log(err);            
-         return res.redirect('/signup');        
-    }
-    passport.authenticate("local")(req, res, function(){
-      res.redirect("/home");       
-    });     
-  });
-});
-
-
-  
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true
-}))
-
 
 // our server instance
 const server = http.createServer(app)

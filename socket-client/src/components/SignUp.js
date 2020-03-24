@@ -16,38 +16,38 @@ class SignUp extends React.Component {
         window.location.href='./login'
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const data = new FormData(event.target);
         
-        const name = data.get('userName');
-        const email = data.get('email');
-        const password = data.get('pwd');
+    //     const name = data.get('userName');
+    //     const email = data.get('email');
+    //     const password = data.get('pwd');
 
-        if (!name || !email || !password) {
-            alert('Missing information')
-        } else {
-            fetch(process.env.URL + "/signup", {
-                method: 'POST',
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    password: password
-                }),
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((response) => response.json())
-            .then((data) => {
-            console.log('Success:', data);
-            })
-            .catch((error) => {
-            console.error('Error:', error);
-            });
-            window.location.href='./login';
-        }
-    }
+    //     if (!name || !email || !password) {
+    //         alert('Missing information')
+    //     } else {
+    //         fetch(process.env.URL + "/signup", {
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 name: name,
+    //                 email: email,
+    //                 password: password
+    //             }),
+    //             headers:{
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //         console.log('Success:', data);
+    //         })
+    //         .catch((error) => {
+    //         console.error('Error:', error);
+    //         });
+    //         window.location.href='./login';
+    //     }
+    // }
 
     render() {
         return (
