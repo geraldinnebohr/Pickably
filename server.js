@@ -62,13 +62,13 @@ app.post('/signup', function(req, res) {
   //const hashedPassword = await bcrypt.hash(req.body.password, 10)
   //const password = hashedPassword;
   User.register(new User({
-      name: req.body.name,
+      username: req.body.username,
       email: req.body.email
   }),
   req.body.password,
   function(err, user){
     if(err){            
-         console.log(err);            
+         console.log(err);     
          res.redirect('/signup');        
     }
     passport.authenticate("local")(req, res, function(){
