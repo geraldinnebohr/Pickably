@@ -68,6 +68,7 @@ initializePassport(
         return myUser;
       }
       else {
+        console.log(err.message)
         return null;
       }
     })
