@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const User = require('./models/user.model');
 const passport = require('passport');
-const LocalStrategy = require("passport-local");
+const LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 //const initializePassport = require('./passport-config');
 //const bcrypt = require('bcrypt');
@@ -67,13 +67,17 @@ app.post('/signup', function(req, res) {
   }),
   req.body.password,
   function(err, user){
-    if(err){            
-         console.log(err);     
-         res.redirect('/signup');        
+    if(err){
+      //res.json({success:false, message:"Your account could  not be saved. Error: ", err})        
+      res.redirect('/signup');        
     }
-    passport.authenticate("local")(req, res, function(){
-      res.redirect("/home");       
-    });     
+    else { 
+      //res.json({success: true, message: "Your account has been saved"})
+      res.redirect('/home');
+    } 
+    // passport.authenticate("local")(req, res, function(){
+    //   res.redirect("/home");       
+    // });     
   });
 });
 
