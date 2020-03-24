@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const User = require('./models/user.model');
 const passport = require('passport');
-const initializePassport = require('./passport-config');
+//const initializePassport = require('./passport-config');
 const bcrypt = require('bcrypt');
 
 // manage APIs with express
@@ -33,8 +33,12 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+
 app.use(passport.initialize())
 app.use(passport.session())
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 //app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
@@ -59,26 +63,26 @@ app.use('/poll', pollRouter);
 
 
 // ----------- auth routes -------------
-initializePassport(
-  passport,
-  email => {
-    User.findOne({email: email}, function (err, myUser) {
-      if (!err) {
-        console.log(myUser)
-        return myUser;
-      }
-      else {
-        console.log(err.message)
-        return null;
-      }
-    })
-  },
-  id => {
-    User.findById(id)
-    .then(myUser => {return myUser})
-    .catch(err => {return null});
-  }
-)
+// initializePassport(
+//   passport,
+//   email => {
+//     User.findOne({email: email}, function (err, myUser) {
+//       if (!err) {
+//         console.log(myUser)
+//         return myUser;
+//       }
+//       else {
+//         console.log(err.message)
+//         return null;
+//       }
+//     })
+//   },
+//   id => {
+//     User.findById(id)
+//     .then(myUser => {return myUser})
+//     .catch(err => {return null});
+//   }
+// )
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/home',
