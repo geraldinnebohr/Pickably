@@ -9,7 +9,7 @@ import Logo from "../images/PICKABLY.png"
 class SignUp extends React.Component {
     constructor() {
         super();
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClick = () => {
