@@ -22,7 +22,8 @@ class Home extends React.Component {
           endpoint: urlServer,
           loading: true,
           error: null,
-          data: [ ]
+          data: [ ],
+          name: null
         };
         this.socket = socketIOClient(this.state.endpoint);
     }
@@ -32,7 +33,11 @@ class Home extends React.Component {
     }
 
     fetchData = async () => {
-        this.setState({ loading: true, error: null });
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const username = params.get('name');
+
+        this.setState({ loading: true, error: null, name: username });
 
         try {
             const response = await fetch(urlServer + "/questionary");
@@ -102,7 +107,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className="home__text">
-                        <div className="home__greeting">Hello</div>
+                        <div className="home__greeting">Hello {this.state.name}</div>
                         <div className="home__secondary">Welcome back! We have new features for you.</div>
                         <button className="home__button" onClick={this.handleClickQuestion}>
                             <img src={Plus} alt="New quiz" className="home__plus"/>New

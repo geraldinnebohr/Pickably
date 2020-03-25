@@ -55,7 +55,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get('/', (req, res) => {
-  res.redirect('/home&name=' + req.user.username);
+  res.redirect('/home?name=' + req.user.username);
 });
 
 app.post('/signup', function(req, res) {
