@@ -57,7 +57,7 @@ class LogIn extends React.Component {
                         </div>
                         <div className="login__text"> or use your email account:</div>
                         {/* <form onSubmit={this.handleSubmit}> */}
-                        <form action="/login" method="post">
+                        <form action="/signin" method="post">
                             <input type="text" placeholder="Name" className="login__input" id="username" name="username"/>
                             <input type="password" placeholder="Password" className="login__input" id="pwd" name="password"/>
                             <button className="signup__button">SIGN IN</button>

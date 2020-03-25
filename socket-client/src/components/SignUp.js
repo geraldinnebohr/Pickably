@@ -62,7 +62,7 @@ class SignUp extends React.Component {
                         </div>
                         <div className="login__text">or use your email for registration:</div>
                         {/* <form onSubmit={this.handleSubmit}> */}
-                        <form method="POST" action="/signup">
+                        <form method="POST" action="/register">
                             <input type="text" placeholder="Name" className="signup__input" id="username" name="username"/>
                             <input type="email" placeholder="Email" className="signup__input" id="email" name="email"/>
                             <input type="password" placeholder="Password" className="signup__input" id="password" name="password"/>

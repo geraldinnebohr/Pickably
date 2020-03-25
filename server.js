@@ -54,11 +54,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.get('/', (req, res) => {
+app.get('/', checkAuthenticated, (req, res) => {
   res.redirect('/home?name=' + req.user.username);
 });
 
-app.post('/signup', function(req, res) {
+app.get('/signin', checkNotAuthenticated, (req, res) => {
+  res.redirect('/login');
+});
+
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.redirect('/signup');
+});
+
+app.post('/register', checkNotAuthenticated, function(req, res) {
 
   User.register(new User({
       username: req.body.username,
@@ -67,21 +75,39 @@ app.post('/signup', function(req, res) {
   req.body.password,
   function(err, user){
     if(err){   
-      res.redirect('/signup');        
+      res.redirect('/register');        
     }
     else { 
-      res.redirect('/login');
+      res.redirect('/signin');
     } 
   });
 });
   
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  //failureFlash: true
-}), function(req, res){
-  res.send("User is "+ req.user.id);
+app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/signin',
+    //failureFlash: true
+  }), function(req, res){
+    res.send("User is "+ req.user.id);
 });
+
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/signin')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+// ---------- OTHER ROUTES ----------
 
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
@@ -92,6 +118,8 @@ app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 //app.use('/user', userRouter);
+
+// ---------- SOCKET SIGNALS ----------
 
 // our server instance
 const server = http.createServer(app)

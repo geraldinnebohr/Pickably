@@ -134,6 +134,7 @@ class Home extends React.Component {
                             <img src={Next} alt="" className="img__home"/>
                         </div>
                     </div>
+                    <button>Holi</button>
                 </div>
             </div>
         )
