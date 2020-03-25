@@ -40,6 +40,17 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
+// use this to let express know it is on a encrypted connection
+app.use(function(req, res, next) {
+  var schema = req.headers["x-forwarded-proto"];
+
+  if (schema === "https") {
+    req.connection.encrypted = true;
+  }
+
+  next();
+});
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(session({
