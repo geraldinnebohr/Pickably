@@ -134,7 +134,9 @@ class Home extends React.Component {
                             <img src={Next} alt="" className="img__home"/>
                         </div>
                     </div>
-                    <button>Holi</button>
+                    <form action="/logout?_method=DELETE" method="POST">
+                        <button type="submit">Log Out</button>
+                    </form>
                 </div>
             </div>
         )
