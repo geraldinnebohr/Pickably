@@ -57,6 +57,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get('/', checkAuthenticated, (req, res) => {
+  res.redirect('/play');
+});
+
+app.get('/home', checkAuthenticated, (req, res) => {
   res.redirect('/home?name=' + req.user.username);
 });
 
@@ -86,7 +90,7 @@ app.post('/register', checkNotAuthenticated, function(req, res) {
 });
   
 app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/home',
     failureRedirect: '/signin',
     //failureFlash: true
   }), function(req, res){
@@ -108,7 +112,7 @@ function checkAuthenticated(req, res, next) {
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/')
+    return res.redirect('/home')
   }
   next()
 }
