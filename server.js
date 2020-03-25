@@ -8,11 +8,12 @@ const User = require('./models/user.model');
 const passport = require('passport');
 const LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
-//const initializePassport = require('./passport-config');
-//const bcrypt = require('bcrypt');
+
 const bodyParser = require("body-parser");
+
 // manage APIs with express
 const cors = require('cors');
+
 // allows connection with our database
 const mongoose = require('mongoose');
 
@@ -27,11 +28,6 @@ const app = express();
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
 app.use(express.json());
-
-// auth
-//app.use(flash());
-
-//app.use(methodOverride('_method'))
 
 // database uri which enables connection with our database
 const uri = process.env.ATLAS_URI;
@@ -58,33 +54,29 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.get('/', (req, res) => {
+  res.redirect('/home&name=' + req.user.username);
+});
+
 app.post('/signup', function(req, res) {
-  //const hashedPassword = await bcrypt.hash(req.body.password, 10)
-  //const password = hashedPassword;
+
   User.register(new User({
       username: req.body.username,
       email: req.body.email
   }),
   req.body.password,
   function(err, user){
-    if(err){
-      //res.json({success:false, message:"Your account could  not be saved. Error: ", err})        
+    if(err){   
       res.redirect('/signup');        
     }
     else { 
-      //res.json({success: true, message: "Your account has been saved"})
       res.redirect('/login');
     } 
-    // passport.authenticate("local")(req, res, function(){
-    //   res.redirect("/home");       
-    // });     
   });
 });
-
-
   
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/login',
   //failureFlash: true
 }), function(req, res){
@@ -100,29 +92,6 @@ app.use('/questionary', questionaryRouter);
 app.use('/room', roomRouter);
 app.use('/poll', pollRouter);
 //app.use('/user', userRouter);
-
-
-// ----------- auth routes -------------
-// initializePassport(
-//   passport,
-//   email => {
-//     User.findOne({email: email}, function (err, myUser) {
-//       if (!err) {
-//         console.log(myUser)
-//         return myUser;
-//       }
-//       else {
-//         console.log(err.message)
-//         return null;
-//       }
-//     })
-//   },
-//   id => {
-//     User.findById(id)
-//     .then(myUser => {return myUser})
-//     .catch(err => {return null});
-//   }
-// )
 
 // our server instance
 const server = http.createServer(app)
