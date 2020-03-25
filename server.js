@@ -26,6 +26,8 @@ const port = process.env.PORT || 5500;
 
 const app = express();
 
+app.enable('trust proxy');
+
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
 app.use(express.json());
@@ -40,16 +42,6 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-// use this to let express know it is on a encrypted connection
-app.use(function(req, res, next) {
-  var schema = req.headers["x-forwarded-proto"];
-
-  if (schema === "https") {
-    req.connection.encrypted = true;
-  }
-
-  next();
-});
 
 app.use(bodyParser.urlencoded({extended:true}));
 
