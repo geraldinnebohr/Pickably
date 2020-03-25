@@ -91,7 +91,6 @@ app.post('/login', passport.authenticate('local', {
   res.send("User is "+ req.user.id);
 });
 
-
 const questionaryRouter = require('./routes/questionaries');
 const roomRouter = require('./routes/room')
 const pollRouter = require('./routes/poll')

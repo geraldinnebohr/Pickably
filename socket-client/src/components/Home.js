@@ -102,7 +102,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className="home__text">
-                        <div className="home__greeting">Hello Paul</div>
+                        <div className="home__greeting">Hello</div>
                         <div className="home__secondary">Welcome back! We have new features for you.</div>
                         <button className="home__button" onClick={this.handleClickQuestion}>
                             <img src={Plus} alt="New quiz" className="home__plus"/>New
