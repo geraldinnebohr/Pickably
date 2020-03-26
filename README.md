@@ -1,7 +1,3 @@
-<p>
-<img height="170" src="https://i.imgur.com/WPGxbgM.png" align="right" >
-</p>
-
 # Pickably
 
 ## The project
