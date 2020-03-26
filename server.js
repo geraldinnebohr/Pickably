@@ -58,7 +58,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get('/', (req, res) => {
-  res.redirect('/play');
+  res.redirect('https://pickably.herokuapp.com/play');
 });
 
 app.get('/home', checkAuthenticated, (req, res) => {
@@ -82,17 +82,17 @@ app.post('/register', checkNotAuthenticated, function(req, res) {
   req.body.password,
   function(err, user){
     if(err){   
-      res.redirect('/signup');        
+      res.redirect('https://pickably.herokuapp.com/signup');        
     }
     else { 
-      res.redirect('/login');
+      res.redirect('https://pickably.herokuapp.com/login');
     } 
   });
 });
   
 app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login',
+    successRedirect: 'https://pickably.herokuapp.com/home',
+    failureRedirect: 'https://pickably.herokuapp.com/login',
     //failureFlash: true
   }), function(req, res){
     res.send("User is "+ req.user.id);
@@ -100,7 +100,7 @@ app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
 
 app.delete('/logout', (req, res) => {
   req.logOut()
-  res.redirect('/login')
+  res.redirect('https://pickably.herokuapp.com/login')
 })
 
 function checkAuthenticated(req, res, next) {
@@ -108,12 +108,12 @@ function checkAuthenticated(req, res, next) {
     return next()
   }
 
-  res.redirect('/signin')
+  res.redirect('https://pickably.herokuapp.com/login')
 }
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('/home')
+    return res.redirect('https://pickably.herokuapp.com/home')
   }
   next()
 }
