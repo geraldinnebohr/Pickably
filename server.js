@@ -26,8 +26,6 @@ const port = process.env.PORT || 5500;
 
 const app = express();
 
-app.enable('trust proxy');
-
 // cors middleware that allow us to parse json because the server will be sending and receiving json
 app.use(cors());
 app.use(express.json());
@@ -67,13 +65,13 @@ app.get('/home', checkAuthenticated, (req, res) => {
   res.redirect('/home?name=' + req.user.username);
 });
 
-app.get('/signin', checkNotAuthenticated, (req, res) => {
-  res.redirect('/login');
-});
+// app.get('/signin', checkNotAuthenticated, (req, res) => {
+//   res.redirect('/login');
+// });
 
-app.get('/register', checkNotAuthenticated, (req, res) => {
-  res.redirect('/signup');
-});
+// app.get('/register', checkNotAuthenticated, (req, res) => {
+//   res.redirect('/signup');
+// });
 
 app.post('/register', checkNotAuthenticated, function(req, res) {
 
@@ -84,17 +82,17 @@ app.post('/register', checkNotAuthenticated, function(req, res) {
   req.body.password,
   function(err, user){
     if(err){   
-      res.redirect('/register');        
+      res.redirect('/signup');        
     }
     else { 
-      res.redirect('/signin');
+      res.redirect('/login');
     } 
   });
 });
   
 app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/home',
-    failureRedirect: '/signin',
+    failureRedirect: '/login',
     //failureFlash: true
   }), function(req, res){
     res.send("User is "+ req.user.id);
@@ -102,7 +100,7 @@ app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
 
 app.delete('/logout', (req, res) => {
   req.logOut()
-  res.redirect('/signin')
+  res.redirect('/login')
 })
 
 function checkAuthenticated(req, res, next) {
