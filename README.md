@@ -1,18 +1,55 @@
 <p>
-<img width="200" src="https://i.imgur.com/WPGxbgM.png" align="right" >
+<img height="170" src="https://i.imgur.com/WPGxbgM.png" align="right" >
 </p>
 
 # Pickably
+
 
 ## The project
 
 PICKABLY is a web application gamified of real time interaction perfect for education, work and fun.
 
-<p>
-<img height="270" src="https://i.imgur.com/yRgQDZU.png" align="left" >
-</p>
+### The stack
+   - MERN (MongoDB, Express js, React js, Node js)
+   - Socket.io
+   - Passport js
 
-### Authors
+
+## Try it
+Keep in mind that everything is working with the url http://pickably.herokuapp.com/, so if you want to try it locally you have to change it
+
+### Prerequisites
+```
+node v12.x
+npm 6.x
+```
+### Installing
+
+First you need to install the server side dependencies
+```
+npm install
+```
+
+then the dependencies of the socket client
+```
+cd socket-client
+npm install
+```
+
+### Run it
+
+Server side
+```
+nodemon server
+```
+
+React
+```
+cd socket-client
+npm start
+```
+
+## Authors
 
 -   Emma Gachancipa..................
 [![alt text][1.1]][1][![alt text][3.1]][3][![alt text][4.1]][4]
