@@ -61,9 +61,9 @@ app.get('/', (req, res) => {
   res.redirect('/play');
 });
 
-app.get('/home', checkAuthenticated,(req, res) => {
-  res.redirect('/home?name=' + req.user.username);
-});
+// app.get('/home',(req, res) => {
+//   res.redirect('/home');
+// });
 
 // app.get('/signin', checkNotAuthenticated, (req, res) => {
 //   res.redirect('/login');
@@ -178,8 +178,12 @@ app.use(express.static(path.join(__dirname, "socket-client", "build")))
 
 // ...
 // Right before your app.listen(), add this:
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+// });
+
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`))
