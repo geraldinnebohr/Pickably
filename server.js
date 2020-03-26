@@ -65,13 +65,18 @@ app.get('/home', checkAuthenticated,(req, res) => {
   res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
-// app.get('/signin', checkNotAuthenticated, (req, res) => {
-//   res.redirect('/login');
-// });
+app.get('/edit', checkAuthenticated,(req, res) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+});
 
-// app.get('/register', checkNotAuthenticated, (req, res) => {
-//   res.redirect('/signup');
-// });
+
+app.get('/signin', checkNotAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+});
+
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+});
 
 app.post('/register', function(req, res) {
 
