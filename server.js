@@ -61,9 +61,9 @@ app.get('/', (req, res) => {
   res.redirect('/play');
 });
 
-// app.get('/home',(req, res) => {
-//   res.redirect('/home');
-// });
+app.get('/home', checkAuthenticated,(req, res) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+});
 
 // app.get('/signin', checkNotAuthenticated, (req, res) => {
 //   res.redirect('/login');
