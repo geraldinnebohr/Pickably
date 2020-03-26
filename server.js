@@ -78,6 +78,10 @@ app.get('/signup', checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
+app.get('/play', checkNotAuthenticated, (req, res) => {
+  res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
+});
+
 app.post('/register', function(req, res) {
 
   User.register(new User({
