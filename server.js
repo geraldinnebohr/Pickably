@@ -58,11 +58,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.get('/', (req, res) => {
-  res.redirect('https://pickably.herokuapp.com/play');
+  res.redirect('/play');
 });
 
-app.get('/home', checkAuthenticated, (req, res) => {
-  res.redirect('https://pickably.herokuapp.com/home?name=' + req.user.username);
+app.get('/home', (req, res) => {
+  res.redirect('/home?name=' + req.user.username);
 });
 
 // app.get('/signin', checkNotAuthenticated, (req, res) => {
@@ -73,7 +73,7 @@ app.get('/home', checkAuthenticated, (req, res) => {
 //   res.redirect('/signup');
 // });
 
-app.post('/register', checkNotAuthenticated, function(req, res) {
+app.post('/register', function(req, res) {
 
   User.register(new User({
       username: req.body.username,
@@ -82,17 +82,17 @@ app.post('/register', checkNotAuthenticated, function(req, res) {
   req.body.password,
   function(err, user){
     if(err){   
-      res.redirect('https://pickably.herokuapp.com/signup');        
+      res.redirect('/signup');        
     }
     else { 
-      res.redirect('https://pickably.herokuapp.com/login');
+      res.redirect('/login');
     } 
   });
 });
   
-app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: 'https://pickably.herokuapp.com/home',
-    failureRedirect: 'https://pickably.herokuapp.com/login',
+app.post('/signin', passport.authenticate('local', {
+    successRedirect: '/home',
+    failureRedirect: '/login',
     //failureFlash: true
   }), function(req, res){
     res.send("User is "+ req.user.id);
@@ -100,7 +100,7 @@ app.post('/signin', checkNotAuthenticated, passport.authenticate('local', {
 
 app.delete('/logout', (req, res) => {
   req.logOut()
-  res.redirect('https://pickably.herokuapp.com/login')
+  res.redirect('/login')
 })
 
 function checkAuthenticated(req, res, next) {
@@ -108,12 +108,12 @@ function checkAuthenticated(req, res, next) {
     return next()
   }
 
-  res.redirect('https://pickably.herokuapp.com/login')
+  res.redirect('/login')
 }
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect('https://pickably.herokuapp.com/home')
+    return res.redirect('/home')
   }
   next()
 }
