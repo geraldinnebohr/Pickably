@@ -12,30 +12,30 @@ class LogIn extends React.Component {
         window.location.href='./signup';
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const data = new FormData(event.target);
 
-        fetch("https://pickably.herokuapp.com/user/login", {
-            method: 'POST',
-            body: JSON.stringify({
-                username: data.get('userName'),
-                password: data.get('pwd')
-            }),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        })
-        .then((response) => {
-            return response.json();
-          })
-        .then((data) => {
-            console.log(data)
-            if (data.success){
-                window.location.href='./home' 
-            }
-        });
-    }
+    //     fetch(process.env.URL + "/login", {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+    //             email: data.get('email'),
+    //             password: data.get('pwd')
+    //         }),
+    //         headers:{
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+        // .then((response) => {
+        //     return response.json();
+        //   })
+        // .then((data) => {
+        //     console.log(data)
+        //     if (data.success){
+        //         window.location.href='./home' 
+        //     }
+        // });
+   // }
 
     render() {
         return (
@@ -56,9 +56,10 @@ class LogIn extends React.Component {
                             <img className="social__icons__auth" src={Facebook} alt="Facebook Button"/>
                         </div>
                         <div className="login__text"> or use your email account:</div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" placeholder="Name" className="login__input" id="userName" name="userName"/>
-                            <input type="text" placeholder="Password" className="login__input" id="pwd" name="pwd"/>
+                        {/* <form onSubmit={this.handleSubmit}> */}
+                        <form action="/signin" method="post">
+                            <input type="text" placeholder="Name" className="login__input" id="username" name="username"/>
+                            <input type="password" placeholder="Password" className="login__input" id="pwd" name="password"/>
                             <button className="signup__button">SIGN IN</button>
                         </form>
                         <button className="forgot__password">Forgot your password?</button>

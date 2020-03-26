@@ -2,6 +2,9 @@ import React from 'react';
 
 import './Styles/GameOver.css'
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
 class GameOver extends React.Component {
     state = {
         loading: true,
@@ -20,7 +23,7 @@ class GameOver extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + room + "/ranking");
+            const response = await fetch(urlServer + "/room/" + room + "/ranking");
             const data = await response.json();
             this.setState({ loading: false, data: data });
             console.log(this.state.data);
@@ -34,7 +37,7 @@ class GameOver extends React.Component {
         const params = new URLSearchParams(search);
         const room = params.get('room');
         
-        fetch('https://pickably.herokuapp.com/room/del/' + room, {
+        fetch(process.env.URL + '/room/del/' + room, {
             method: 'DELETE',
         })
         .then(res => res.text())     // or res.json()

@@ -9,30 +9,45 @@ import Logo from "../images/PICKABLY.png"
 class SignUp extends React.Component {
     constructor() {
         super();
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleClick = () => {
         window.location.href='./login'
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
+    // handleSubmit(event) {
+    //     event.preventDefault();
+    //     const data = new FormData(event.target);
+        
+    //     const name = data.get('userName');
+    //     const email = data.get('email');
+    //     const password = data.get('pwd');
 
-        fetch("https://pickably.herokuapp.com/user/signup", {
-            method: 'POST',
-            body: JSON.stringify({
-                username: data.get('userName'),
-                email: data.get('email'),
-                password: data.get('pwd')
-            }),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        });
-        window.location.href='./login'
-    }
+    //     if (!name || !email || !password) {
+    //         alert('Missing information')
+    //     } else {
+    //         fetch(process.env.URL + "/signup", {
+    //             method: 'POST',
+    //             body: JSON.stringify({
+    //                 name: name,
+    //                 email: email,
+    //                 password: password
+    //             }),
+    //             headers:{
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         })
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //         console.log('Success:', data);
+    //         })
+    //         .catch((error) => {
+    //         console.error('Error:', error);
+    //         });
+    //         window.location.href='./login';
+    //     }
+    // }
 
     render() {
         return (
@@ -46,10 +61,11 @@ class SignUp extends React.Component {
                             <img className="social__icons__auth" src={Facebook} alt="Facebook Button"/>
                         </div>
                         <div className="login__text">or use your email for registration:</div>
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" placeholder="Name" className="signup__input" id="userName" name="userName"/>
-                            <input type="text" placeholder="Email" className="signup__input" id="email" name="email"/>
-                            <input type="text" placeholder="Password" className="signup__input" id="pwd" name="pwd"/>
+                        {/* <form onSubmit={this.handleSubmit}> */}
+                        <form method="POST" action="/register">
+                            <input type="text" placeholder="Name" className="signup__input" id="username" name="username"/>
+                            <input type="email" placeholder="Email" className="signup__input" id="email" name="email"/>
+                            <input type="password" placeholder="Password" className="signup__input" id="password" name="password"/>
                             <button className="signup__button__sign">SIGN UP</button>
                         </form>
                     </div>

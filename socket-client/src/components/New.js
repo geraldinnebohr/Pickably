@@ -9,6 +9,9 @@ import Square from '../images/square.svg';
 import Triangle from '../images/triangle.svg';
 import Ex from '../images/ex.svg';
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
 class New extends React.Component {
     constructor() {
         super();
@@ -20,7 +23,7 @@ class New extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        fetch("https://pickably.herokuapp.com/questionary/add", {
+        fetch(urlServer + "/questionary/add", {
             method: 'POST',
             body: JSON.stringify({
                 description: data.get('description'),

@@ -3,6 +3,9 @@ import React from 'react';
 import "./Styles/Play.css";
 import Logo from "../images/PICKABLY.png"
 
+//const urlServer = "http://localhost:5500"
+const urlServer = "https://pickably.herokuapp.com"
+
 class Play extends React.Component {
     constructor(props) {
         super(props);
@@ -25,10 +28,10 @@ class Play extends React.Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch("https://pickably.herokuapp.com/room/" + this.state.value);
+            const response = await fetch(urlServer + "/room/" + this.state.value);
             const data = await response.json();
             this.setState({ loading: false, data: data });
-            console.log("https://pickably.herokuapp.com/room/" + this.state.value)
+            console.log(urlServer + "/room/" + this.state.value)
             if (this.state.data === null) {
                 alert('NO Existe el pin: ' + this.state.value);
             } else {
@@ -44,6 +47,10 @@ class Play extends React.Component {
         this.setState({value: event.target.value});
     }
 
+    handleClick = () => {
+        window.location.href='./signup'
+    }
+
     render() {
         return (
             <div className="play__container">
@@ -56,7 +63,7 @@ class Play extends React.Component {
 
                 <div className="game__container">
                     or create a pickably game:
-                    <button className="create__game">CREATE</button>
+                    <button className="create__game" onClick={this.handleClick}>CREATE</button>
                 </div>
             </div>
         )
