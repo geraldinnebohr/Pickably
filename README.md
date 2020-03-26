@@ -6,7 +6,7 @@ PICKABLY is a web application gamified of real time interaction perfect for educ
 
 
 <p>
-<img height="220" src="https://i.imgur.com/WPGxbgM.png" align="right" >
+<img height="200" src="https://i.imgur.com/WPGxbgM.png" align="right" >
 </p>
 
 ### The stack
