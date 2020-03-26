@@ -4,8 +4,11 @@
 
 # Pickably
 
-
 ## The project
+
+<p>
+<img height="250" src="https://i.imgur.com/WPGxbgM.png" align="right" >
+</p>
 
 PICKABLY is a web application gamified of real time interaction perfect for education, work and fun.
 
