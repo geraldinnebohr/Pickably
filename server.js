@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', checkAuthenticated, (req, res) => {
-  res.redirect('/home?name=' + req.user.username);
+  res.redirect('https://pickably.herokuapp.com/home?name=' + req.user.username);
 });
 
 // app.get('/signin', checkNotAuthenticated, (req, res) => {
