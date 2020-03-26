@@ -70,11 +70,11 @@ app.get('/edit', checkAuthenticated,(req, res) => {
 });
 
 
-app.get('/signin', checkNotAuthenticated, (req, res) => {
+app.get('/login', checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
-app.get('/register', checkNotAuthenticated, (req, res) => {
+app.get('/signup', checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "socket-client", "build", "index.html"));
 });
 
