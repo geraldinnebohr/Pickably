@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
   res.redirect('/play');
 });
 
-app.get('/home', (req, res) => {
+app.get('/home', checkAuthenticated,(req, res) => {
   res.redirect('/home?name=' + req.user.username);
 });
 
