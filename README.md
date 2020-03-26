@@ -16,7 +16,7 @@ PICKABLY is a web application gamified of real time interaction perfect for educ
 
 
 ## Try it
-Keep in mind that everything is working with the url http://pickably.herokuapp.com/, so if you want to try it locally you have to change it
+Keep in mind that everything is working with the url https://pickably.herokuapp.com/, so if you want to try it locally you have to change it
 
 ### Prerequisites
 ```
